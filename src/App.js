@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Header from './Components/Header/Header';
+import NavBar from './Components/NavBar/NavBar';
+import Pagination from './Components/Pagination/Pagination';
+import ProductPage from './Pages/ProductScreen/ProductPage';
 
 function App() {
+
+  const [route, setRoute] = useState("Products");
+  // Home, Cart, Wishlist, Products, Account
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <NavBar route={route} setRoute={setRoute} />
+      
+      <main>
+        <Pagination />
+        <ProductPage route={route}/>
+      </main>
     </div>
   );
 }

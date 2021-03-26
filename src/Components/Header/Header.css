@@ -1,0 +1,24 @@
+.header{
+    background-color: var(--gray-900);
+    color : var(--white-100);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: .5rem 4rem;
+}
+
+.logo{
+    font-size: 2rem;
+    color: var(--yellow-500);
+    margin: .5rem 0 .5rem;
+    font-weight: 500;
+}
+
+@media screen and (max-width : 768px){
+    .header{
+        padding: .5rem 1rem;
+    }
+    .logo{
+        font-size: 1.5rem;
+    }
+}

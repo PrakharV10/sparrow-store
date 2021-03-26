@@ -1,0 +1,21 @@
+.product-page{
+    display: flex;
+}
+
+.product-container{
+    flex : 1 1 0;
+}
+
+.head{
+    padding: .5rem 0 1rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(201, 200, 200, 0.342);
+}
+
+@media screen and (max-width : 1000px){
+    .head{
+        padding: 0 0 1rem;
+    }
+}

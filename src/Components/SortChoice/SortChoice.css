@@ -1,0 +1,23 @@
+.sort-div{
+    display: flex;
+    align-items: center;
+}
+
+.sort-div span{
+    font-weight: 400;
+    font-size: .9rem;
+}
+
+.radio{
+    display: flex;
+    width: fit-content;
+}
+
+.radio label{
+    margin: .5rem .3rem;
+    width: fit-content;
+}
+
+.radio label input{
+    margin: 0 .3rem 0 0;
+}

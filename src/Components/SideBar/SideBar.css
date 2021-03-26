@@ -1,0 +1,21 @@
+.side-bar{
+    height : max-content;
+    flex : 0 0 280px;
+    /* background-color: var(--white-100); */
+    margin-right: 2rem;
+    --active-color : #E7B236;
+}
+
+.list,.check-list{
+    padding: 0 0 1rem;
+    margin: 0 0 2rem;
+    width: inherit;
+    max-width: 100%;
+}
+
+
+@media screen and (max-width : 1000px){
+    .side-bar{
+        display: none;
+    }
+}
