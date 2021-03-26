@@ -3,7 +3,9 @@ import ProductList from '../../Components/ProductList/ProductList'
 import SideBar from '../../Components/SideBar/SideBar'
 import './ProductPage.css'
 
-function ProductPage({route}) {
+function ProductPage({ route }) {
+
+
     return (
         <div className="product-page">
             <SideBar />

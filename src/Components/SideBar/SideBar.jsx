@@ -19,26 +19,26 @@ function SideBar() {
                 <li>Watches</li>
             </ul>
             <div className="check-list">
-                    <div className="list-title">
-                        Refine search
-                    </div>
-                    <div className="check-title">
-                        Brand
-                    </div>
-                    <div className="checkbox">
-                        <label for="checkbox-1">
-                            <input id="checkbox-1" name="checkbox" type="checkbox" checked />
-                            Apple
-                        </label>
-                        <label for="checkbox-2">
-                            <input id="checkbox-2" name="checkbox" type="checkbox" />
-                            Nokia 
-                        </label>
-                        <label for="checkbox-3">
-                            <input id="checkbox-3" name="checkbox" type="checkbox" />
-                            Samsung
-                        </label>
-                    </div>
+                <div className="list-title">
+                    Refine search
+                </div>
+                <div className="check-title">
+                    Brand
+                </div>
+                <div className="checkbox">
+                    <label htmlFor="checkbox-1">
+                        <input id="checkbox-1" name="checkbox" type="checkbox" />
+                        Apple
+                    </label>
+                    <label htmlFor="checkbox-2">
+                        <input id="checkbox-2" name="checkbox" type="checkbox" />
+                        Nokia 
+                    </label>
+                    <label htmlFor="checkbox-3">
+                        <input id="checkbox-3" name="checkbox" type="checkbox" />
+                        Samsung
+                    </label>
+                </div>
             </div>
         </aside>
     )

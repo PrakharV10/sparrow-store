@@ -6,7 +6,7 @@ function NavBar({route, setRoute}) {
         <nav className="nav-bar">
             <ul className="left-nav-links">
                 {
-                    ["Home", "Product"].map((link) => {
+                    ["Home", "Products"].map((link) => {
                         return (
                             <li
                                 key ={link}

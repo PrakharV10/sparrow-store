@@ -4,7 +4,11 @@
     padding: 1rem 4rem;
     display: flex;
     align-items: center;
+    position: -webkit-sticky;
     position: sticky;
+    top : 0;
+    z-index: 3;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .left-nav-links{
