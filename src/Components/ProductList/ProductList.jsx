@@ -1,6 +1,5 @@
 import React from 'react'
 import ProductCard from '../ProductCard/ProductCard'
-import SortChoice from '../SortChoice/SortChoice'
 import { useCart } from '../../Context/Cart-Context'
 import './ProductList.css'
 
@@ -10,18 +9,13 @@ function ProductList() {
 
     return (
         <div className="product-list">
-            {/* <SortChoice /> */}
             <div className="product-display">
                 {
-                    data.map(({id, image, name, brand,price, ratings}) => {
+                    data.map((product) => {
                         return (
-                            <div key={id}>
+                            <div key={product.id}>
                                 <ProductCard
-                                    image = {image}
-                                    name = {name}
-                                    brand={brand}
-                                    price = {price}
-                                    ratings = {ratings}
+                                    product={product}
                                 />
                             </div>
                         );

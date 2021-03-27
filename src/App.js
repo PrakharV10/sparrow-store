@@ -4,6 +4,7 @@ import Header from './Components/Header/Header';
 import NavBar from './Components/NavBar/NavBar';
 import Pagination from './Components/Pagination/Pagination';
 import ProductPage from './Pages/ProductScreen/ProductPage';
+import WishlistPage from './Pages/WishlistPage/WishlistPage';
 
 function App() {
 
@@ -16,8 +17,9 @@ function App() {
       <NavBar route={route} setRoute={setRoute} />
       
       <main>
-        <Pagination />
-        <ProductPage route={route}/>
+        <Pagination route={route} />
+        {route === "Products" && <ProductPage route={route} />}
+        {route === "Wishlist" && <WishlistPage />}
       </main>
     </div>
   );

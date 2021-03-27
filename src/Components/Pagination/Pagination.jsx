@@ -1,10 +1,10 @@
 import React from 'react'
 import './Pagination.css'
 
-function Pagination() {
+function Pagination({route}) {
     return (
         <div class="pagination">
-            Home | Products
+            Home | {route}
         </div>
     )
 }

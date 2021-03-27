@@ -19,3 +19,10 @@
         padding: 0 0 1rem;
     }
 }
+
+@media screen and (max-width : 426px){
+    .head{
+        border-bottom: 0;
+        margin-bottom: 0;
+    }
+}
