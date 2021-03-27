@@ -4,6 +4,7 @@ import NavBar from './Components/NavBar/NavBar';
 import Pagination from './Components/Pagination/Pagination';
 import Toast from './Components/Toast/Toast';
 import { useRoute, useToast } from './Context/Cart-Context';
+import CartPage from './Pages/CartPage/CartPage';
 import ProductDesc from './Pages/ProductDescription/ProductDesc';
 import ProductPage from './Pages/ProductScreen/ProductPage';
 import WishlistPage from './Pages/WishlistPage/WishlistPage';
@@ -25,6 +26,7 @@ function App() {
         {route === "Products" && <ProductPage route={route} />}
         {route === "Wishlist" && <WishlistPage />}
         {route === "Product-Description" && <ProductDesc />}
+        {route === "Cart" && <CartPage />}
         <Toast toast={toast} setToast={setToast} />
       </main>
     </div>
