@@ -49,6 +49,19 @@
     color: var(--yellow-500);
 }
 
+.nav-icon{
+    position: relative;
+}
+
+.badge .number{
+    top : -18px;
+    right: -8px;
+    transform: scale(.9);
+    background-color: var(--yellow-500);
+    color: var(--gray-900);
+    font-size: .8rem;
+}
+
 
 @media screen and (max-width : 768px){
     .nav-bar{

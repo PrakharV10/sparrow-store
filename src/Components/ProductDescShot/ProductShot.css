@@ -1,0 +1,57 @@
+.product-shot{
+    flex : 0 0 30vw;
+    height: inherit;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--gray-300);
+    border-radius: 2px;
+    position: relative;
+    padding: 1rem;
+}
+
+.heart-button{
+    position: absolute;
+    top:20px;
+    right: 20px;
+    background: none;
+    outline: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    padding: .6rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.heart-button svg{
+    fill : var(--gray-800);
+    width: 13px;
+    height: 13px;
+}
+
+.heart-button .heart-red{
+    fill : red;
+}
+
+
+.product-shot img{
+    object-fit: contain;
+    height: 90%;
+}
+
+
+@media screen and (max-width : 768px){
+    .product-shot{
+        flex : 0 0 70vw;
+    }
+}
+
+@media screen and (max-width : 426px){
+    .product-shot img{
+        height: 200px;
+    }
+}

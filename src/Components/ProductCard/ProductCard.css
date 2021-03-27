@@ -14,7 +14,7 @@
 }
 
 .cards:hover > .cards-img img{
-    transform: scale(1.1);
+    transform: scale(1.04);
     filter: blur(1px);
     -webkit-filter: blur(1px);
 }
@@ -44,10 +44,11 @@
     height: 30px;
     padding: .5rem;
     background-color: var(--white-100);
+    border-radius:50% ;
 }
 
 .wishlist-ico svg{
-    fill : var(--gray-900);
+    fill : red;
     transition: all .3s ease;
 }
 

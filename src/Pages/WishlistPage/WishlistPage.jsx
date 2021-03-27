@@ -1,4 +1,5 @@
 import React from 'react'
+import EmptyWish from '../../Components/EmptyWish/EmptyWish';
 import WishCard from '../../Components/WishCard/WishCard';
 import { useCart } from '../../Context/Cart-Context'
 import './wishlistPage.css'
@@ -9,22 +10,28 @@ function WishlistPage() {
 
     return (
         <div className="wishlist-page">
-            <div className="head">
-                Your Wishlist
-            </div>
-            <div className="wishlist">
-                <div className="wish-grid">
-                    {
-                        state.wishList.map(wish => {
-                            return (
-                                <div key={wish.id}>
-                                    <WishCard wish={wish}/>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
-            </div>
+            
+            {state.wishList.length !== 0 &&
+                <>
+                    <div className="head">
+                    Your Wishlist
+                    </div>
+                    <div className="wishlist">
+                        <div className="wish-grid">
+                            {
+                                state.wishList.map(wish => {
+                                    return (
+                                        <div key={wish.id}>
+                                            <WishCard wish={wish} />
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                    </div>
+                </>
+            }
+            {state.wishList.length === 0 && <EmptyWish />}
         </div>
     )
 }

@@ -5,6 +5,7 @@ faker.seed(123);
 const data = [...Array(12)].map((item) => ({
   id: faker.datatype.uuid(),
   name: faker.commerce.productName(),
+  desc : faker.commerce.productDescription(),
   image: faker.random.image(),
   price: faker.commerce.price(),
   material: faker.commerce.productMaterial(),

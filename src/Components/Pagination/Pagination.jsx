@@ -3,7 +3,7 @@ import './Pagination.css'
 
 function Pagination({route}) {
     return (
-        <div class="pagination">
+        <div className="pagination">
             Home | {route}
         </div>
     )

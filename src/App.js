@@ -1,15 +1,19 @@
-import { useState } from 'react';
 import './App.css';
 import Header from './Components/Header/Header';
 import NavBar from './Components/NavBar/NavBar';
 import Pagination from './Components/Pagination/Pagination';
+import Toast from './Components/Toast/Toast';
+import { useRoute, useToast } from './Context/Cart-Context';
+import ProductDesc from './Pages/ProductDescription/ProductDesc';
 import ProductPage from './Pages/ProductScreen/ProductPage';
 import WishlistPage from './Pages/WishlistPage/WishlistPage';
 
 function App() {
 
-  const [route, setRoute] = useState("Products");
-  // Home, Cart, Wishlist, Products, Account
+  const { route, setRoute } = useRoute();
+    // Home, Cart, Wishlist, Products, Account, Products-Description
+
+  const { toast, setToast } = useToast();
 
   return (
     <div className="App">
@@ -20,6 +24,8 @@ function App() {
         <Pagination route={route} />
         {route === "Products" && <ProductPage route={route} />}
         {route === "Wishlist" && <WishlistPage />}
+        {route === "Product-Description" && <ProductDesc />}
+        <Toast toast={toast} setToast={setToast} />
       </main>
     </div>
   );
