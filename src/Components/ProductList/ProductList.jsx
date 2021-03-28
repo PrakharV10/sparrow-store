@@ -16,7 +16,7 @@ function ProductList() {
             return data
     }
 
-    function getFiltered(sortedData, fastDelivery, outOfStock) {
+    function getFiltered(sortedData, fastDelivery, outOfStock, searchKeyWord) {
         return sortedData
             .filter(item => {
             if (fastDelivery === true)
@@ -27,18 +27,23 @@ function ProductList() {
                 if (outOfStock === false)
                     return item.inStock === true
                 return item
-        })
+            })
+            .filter(item => {
+                if (item.name.includes(searchKeyWord) === true || item.brand.includes(searchKeyWord) === true)
+                    return item
+                return null
+            })
     }
 
 
     const sortedData = getSorted(data, state.sortBy)
-    const filteredData = getFiltered(sortedData, state.fastDelivery, state.outOfStock)
+    const filteredData = getFiltered(sortedData, state.fastDelivery, state.outOfStock, state.searchKeyWord)
 
     return (
         <div className="product-list">
             <div className="product-display">
                 {
-                    filteredData.map((product) => {
+                    filteredData.slice(0,12).map((product) => {
                         return (
                             <div key={product.id}>
                                 <ProductCard

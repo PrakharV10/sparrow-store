@@ -42,11 +42,16 @@ function ProductDetails() {
             <div className="product-price">
                 ${current.price}
             </div>
-            <button
-                onClick = {cartButtonHandler}
-                className="btn btn-black">
-                {searchCart() === false ? `ADD TO CART` : `GO TO CART`}
-            </button>
+            {
+                current.inStock === true ?
+                    <button
+                        onClick = {cartButtonHandler}
+                        className="btn btn-black">
+                        {searchCart() === false ? `ADD TO CART` : `GO TO CART`}
+                    </button>
+                    :
+                    <button className="btn btn-disabled">ADD TO CART</button>
+            }
         </div>
     )
 }

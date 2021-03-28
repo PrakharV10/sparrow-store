@@ -6,6 +6,10 @@ function PriceTotal() {
 
     const { state } = useCart();
 
+    const total = state.cart.reduce((accum, item) => {
+        return accum + item.qty*item.price
+    },0)
+
     return (
         <div className="price-total">
             <div>
@@ -14,11 +18,11 @@ function PriceTotal() {
                 </div>
                 <div className="price-breakdown">
                     <span>Price ({state.cart.length} Item)</span>
-                    <span>Rs. 999</span>
+                    <span>Rs. {total}</span>
                 </div>
                 <div className="price-breakdown">
                     <span>Discount</span>
-                    <span className="c-green">- Rs. 400</span>
+                    <span className="c-green">- Rs. 40</span>
                 </div>
                 <div className="price-breakdown b-btm">
                     <span>Delivery Charges</span>
@@ -26,7 +30,7 @@ function PriceTotal() {
                 </div>
                 <div className="price-breakdown total-amount b-btm">
                     <span>Total Amount</span>
-                    <span>Rs. 599</span>
+                    <span>Rs. {total - 40}</span>
                 </div>
                 <button className="btn btn-black">
                     PLACE ORDER

@@ -42,3 +42,11 @@
     background-color: var(--yellow-500);
     color: black;
 }
+
+.btn-disabled{
+    width: 200px;
+    margin: 1rem 0;
+    background-color: #D8D8D8;
+    color : white;
+    cursor: default;
+}

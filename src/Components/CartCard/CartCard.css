@@ -12,6 +12,7 @@
     flex: 0 0 150px;
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
 
 .card-image img{

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer, useState } from 'react';
-import { dispatchFunc, initialState } from '../Components/Reducer/CartReducer.js';
+import { dispatchFunc, initialState } from '../Reducer/CartReducer.js';
 import data from '../Product';
 
 // Cart, Wishlist, Products Context 
