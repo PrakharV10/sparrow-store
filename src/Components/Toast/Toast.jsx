@@ -1,7 +1,7 @@
 import React from 'react'
 import './Toast.css'
 
-function Toast({toast, setToast}) {
+function Toast({ toast, setToast }) {
 
     return (
         <div

@@ -17,10 +17,16 @@ function ProductShot() {
     function wishListToggle(e) {
         e.stopPropagation()
         if (searchWishList() === true) {
-            setToast({ ...toast, action: "Remov", show: true})
+            setToast({ ...toast, action: "Remov", show: true })
+            setTimeout(() => {
+                setToast({...toast, action : "Remov", show:false})
+            },2000)
             dispatch({ type: "REMOVE_FROM_WISHLIST", payload: current })
         } else {
-            setToast({...toast, action : "Add", show:true})
+            setToast({ ...toast, action: "Add", show: true })
+            setTimeout(() => {
+                setToast({...toast, action : "Add", show:false})
+            },2000)
             dispatch({ type : "ADDTOWISHLIST", payload : current })
         }
     }

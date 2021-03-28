@@ -1,7 +1,5 @@
 import React from 'react'
 import { useCart, useCurrProduct, useRoute, useToast } from '../../Context/Cart-Context'
-
-import Toast from '../Toast/Toast';
 import './ProductCard.css'
 
 function ProductCard({ product }) {
@@ -21,10 +19,16 @@ function ProductCard({ product }) {
     function wishListToggle(e) {
         e.stopPropagation()
         if (searchWishList() === true) {
-            setToast({ ...toast, action: "Remov", show: true})
+            setToast({ ...toast, action: "Remov", show: true })
+            setTimeout(() => {
+                setToast({...toast, action : "Remov", show:false})
+            },2000)
             dispatch({ type: "REMOVE_FROM_WISHLIST", payload: product })
         } else {
-            setToast({...toast, action : "Add", show:true})
+            setToast({ ...toast, action: "Add", show: true })
+            setTimeout(() => {
+                setToast({...toast, action : "Add", show:false})
+            },2000)
             dispatch({ type : "ADDTOWISHLIST", payload : product })
         }
     }

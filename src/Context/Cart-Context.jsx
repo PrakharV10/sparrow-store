@@ -7,6 +7,7 @@ const CartContext = createContext();
 const ADD_TO_WISHLIST = "ADDTOWISHLIST"
 const REMOVE_FROM_WISHLIST = "REMOVE_FROM_WISHLIST"
 const ADD_TO_CART = "ADD_TO_CART";
+const REMOVE_FROM_CART = "REMOVE_FROM_CART"
 
 function dispatchFunc(state, {type,payload}) {
     switch (type) {
@@ -15,7 +16,9 @@ function dispatchFunc(state, {type,payload}) {
         case REMOVE_FROM_WISHLIST:
             return { ...state, wishList: state.wishList.filter(wish => wish.id !== payload.id) }
         case ADD_TO_CART:
-            return {...state, wishList: state.wishList.filter(wish => wish.id !== payload.id), cart : [...state.cart, payload]}
+            return { ...state, wishList: state.wishList.filter(wish => wish.id !== payload.id), cart: [...state.cart, payload] }
+        case REMOVE_FROM_CART:
+            return {...state, cart: state.cart.filter(item => item.id !== payload.id)}
         default:
             return state
     }

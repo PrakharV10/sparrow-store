@@ -1,5 +1,5 @@
 import React from 'react'
-import { useCart, useCurrProduct } from '../../Context/Cart-Context'
+import { useCart, useCurrProduct, useRoute } from '../../Context/Cart-Context'
 
 import './ProductDetails.css'
 
@@ -7,11 +7,19 @@ function ProductDetails() {
 
     const { state, dispatch } = useCart();
     const { current } = useCurrProduct();
+    const { setRoute } = useRoute();
 
     function searchCart() {
         if (state.cart.filter(item => item.id === current.id).length === 0)
             return false
         return true
+    }
+
+    function cartButtonHandler() {
+        if (searchCart() === false)
+            dispatch({ type: "ADD_TO_CART", payload: current })
+        else
+            setRoute("Cart")
     }
 
     return (
@@ -35,7 +43,7 @@ function ProductDetails() {
                 ${current.price}
             </div>
             <button
-                onClick = {() => dispatch({type : "ADD_TO_CART", payload : current})}
+                onClick = {cartButtonHandler}
                 className="btn btn-black">
                 {searchCart() === false ? `ADD TO CART` : `GO TO CART`}
             </button>

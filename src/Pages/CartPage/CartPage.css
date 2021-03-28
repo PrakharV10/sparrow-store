@@ -1,15 +1,15 @@
 .cart-page{
     display: flex;
+    max-width: 980px;
+    margin: 0 auto 2rem;
 }
 
 .cart-container{
-    flex : 0 0 60vw;
+    flex : 0 0 70%;
 }
 
-.price-total{
-    flex : 1 1 0;
-    /* background-color: var(--white-100); */
-    border-radius: 2px;
-    margin-left: 1rem ; 
-    /* change above to 0  */
+@media screen and (max-width:768px){
+    .cart-page{
+        flex-direction: column;
+    }
 }
