@@ -5,13 +5,40 @@ import './ProductList.css'
 
 function ProductList() {
 
-    const { data } = useCart();
+    const { data,state } = useCart();
+
+    function getSorted(data, sortBy) {
+        if (sortBy && sortBy === "HIGH_TO_LOW")
+            return data.sort(function (a, b) { return b.price - a.price })
+        else if (sortBy && sortBy === "LOW_TO_HIGH")
+            return data.sort(function (a, b) { return a.price - b.price })
+        else
+            return data
+    }
+
+    function getFiltered(sortedData, fastDelivery, outOfStock) {
+        return sortedData
+            .filter(item => {
+            if (fastDelivery === true)
+                return item.fastDelivery === true
+            return item
+            })
+            .filter(item => {
+                if (outOfStock === false)
+                    return item.inStock === true
+                return item
+        })
+    }
+
+
+    const sortedData = getSorted(data, state.sortBy)
+    const filteredData = getFiltered(sortedData, state.fastDelivery, state.outOfStock)
 
     return (
         <div className="product-list">
             <div className="product-display">
                 {
-                    data.map((product) => {
+                    filteredData.map((product) => {
                         return (
                             <div key={product.id}>
                                 <ProductCard

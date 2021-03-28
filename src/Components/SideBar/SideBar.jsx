@@ -1,42 +1,62 @@
 import React from 'react'
+import { useCart } from '../../Context/Cart-Context'
 import './SideBar.css'
 
 function SideBar() {
+
+    const { state,dispatch } = useCart();
+
     return (
         <aside className="side-bar">
-            <ul className="list">
-                <div className="list-title">Categories</div>
-                <li>Home</li>
-                <li className="collapsable">
-                    <div>Smartphones</div>
-                    <ul>
-                        <li>Apple</li>
-                        <li>Realme</li>
-                        <li>Samsung</li>
-                    </ul>
-                </li>
-                <li>Earphones</li>
-                <li>Watches</li>
-            </ul>
             <div className="check-list">
                 <div className="list-title">
                     Refine search
                 </div>
                 <div className="check-title">
-                    Brand
+                    Price
+                </div>
+                <div className="checkbox">
+                    <label htmlFor="radio-1">
+                        <input
+                            onChange={() => dispatch({ type: "SORT", payload: "HIGH_TO_LOW" })}
+                            checked = {state.sortBy === "HIGH_TO_LOW"}
+                            id="radio-1"
+                            name="radio"
+                            type="radio" />
+                        High to Low
+                    </label>
+                    <label htmlFor="radio-2">
+                        <input
+                            onChange={() => dispatch({ type: "SORT", payload: "LOW_TO_HIGH" })}
+                            checked = {state.sortBy === "LOW_TO_HIGH"}
+                            id="radio-2"
+                            name="radio"
+                            type="radio" />
+                        Low to High 
+                    </label>
+                </div>
+
+                <div className="check-title">
+                    Filter
                 </div>
                 <div className="checkbox">
                     <label htmlFor="checkbox-1">
-                        <input id="checkbox-1" name="checkbox" type="checkbox" />
-                        Apple
+                        <input
+                            onChange={() => dispatch({ type: "TOGGLE_STOCK" })}
+                            checked = {state.outOfStock === true}
+                            id="checkbox-1"
+                            name="checkbox"
+                            type="checkbox" />
+                        Include Out of Stock
                     </label>
                     <label htmlFor="checkbox-2">
-                        <input id="checkbox-2" name="checkbox" type="checkbox" />
-                        Nokia 
-                    </label>
-                    <label htmlFor="checkbox-3">
-                        <input id="checkbox-3" name="checkbox" type="checkbox" />
-                        Samsung
+                        <input
+                            onChange={() => dispatch({ type: "TOGGLE_DELIVERY" })}
+                            checked = {state.fastDelivery === true}
+                            id="checkbox-2"
+                            name="checkbox"
+                            type="checkbox" />
+                        Fast Delivery Only 
                     </label>
                 </div>
             </div>

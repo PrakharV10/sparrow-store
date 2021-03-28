@@ -1,35 +1,15 @@
 import React, { createContext, useContext, useReducer, useState } from 'react';
+import { dispatchFunc, initialState } from '../Components/Reducer/CartReducer.js';
 import data from '../Product';
 
 // Cart, Wishlist, Products Context 
 const CartContext = createContext();
 
-const ADD_TO_WISHLIST = "ADDTOWISHLIST"
-const REMOVE_FROM_WISHLIST = "REMOVE_FROM_WISHLIST"
-const ADD_TO_CART = "ADD_TO_CART";
-const REMOVE_FROM_CART = "REMOVE_FROM_CART"
 
-function dispatchFunc(state, {type,payload}) {
-    switch (type) {
-        case ADD_TO_WISHLIST:
-            return { ...state, wishList: [...state.wishList, payload] }
-        case REMOVE_FROM_WISHLIST:
-            return { ...state, wishList: state.wishList.filter(wish => wish.id !== payload.id) }
-        case ADD_TO_CART:
-            return { ...state, wishList: state.wishList.filter(wish => wish.id !== payload.id), cart: [...state.cart, payload] }
-        case REMOVE_FROM_CART:
-            return {...state, cart: state.cart.filter(item => item.id !== payload.id)}
-        default:
-            return state
-    }
-}
 
 export function CartProvider({ children }) {
     
-    const [state, dispatch] = useReducer(dispatchFunc, {
-        cart: [],
-        wishList : []
-    });
+    const [state, dispatch] = useReducer(dispatchFunc, initialState);
 
     return (
         <CartContext.Provider value={{ data, state, dispatch }}>
