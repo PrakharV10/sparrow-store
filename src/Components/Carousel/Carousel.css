@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.carousel{
+    position: relative;
+    transition: all .7s ease-in-out;
+}
+
+.image-wrapper{
+    overflow: hidden;
+    max-height: 630px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay{
+    background: black;
+}
+
+.image-wrapper img{
+    transition: all 1s ease-in-out;
+    opacity: .3;
+    transform: scale(1);
+}
+
+.carousel:hover > .image-wrapper> img{
+    transform: scale(1.07);
+}
+
+.overlay-text{
+    font-family: 'Poppins', sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    color: var(--white-100);
+    width: 100%;
+}
+
+.overlay-text .up-title{
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.title{
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+.overlay-text .btn-black{
+    background-color: var(--yellow-500);
+    color: var(--gray-900);
+}
+
+.overlay-text .btn-black:hover{
+    background-color: var(--yellow-600);
+}
+
+@media screen and (max-width : 768px){
+    .overlay-text .up-title{
+        font-size: 1rem;
+    }
+
+    .overlay-text .title{
+        font-size: 2rem;
+    }
+
+    .overlay-text .btn-black{
+        width: max-content;
+    }
+}

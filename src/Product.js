@@ -36,3 +36,4 @@ const data = [...Array(50)].map((item) => ({
 }));
 
 export default data;
+

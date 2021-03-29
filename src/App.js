@@ -5,6 +5,7 @@ import Pagination from './Components/Pagination/Pagination';
 import Toast from './Components/Toast/Toast';
 import { useRoute, useToast } from './Context/Cart-Context';
 import CartPage from './Pages/CartPage/CartPage';
+import LandingPage from './Pages/LandingPage/LandingPage';
 import ProductDesc from './Pages/ProductDescription/ProductDesc';
 import ProductPage from './Pages/ProductScreen/ProductPage';
 import WishlistPage from './Pages/WishlistPage/WishlistPage';
@@ -22,13 +23,17 @@ function App() {
       <NavBar route={route} setRoute={setRoute} />
       
       <main>
-        <Pagination route={route} />
+        {route !== "Home" && <Pagination route={route} />}
         {route === "Products" && <ProductPage route={route} />}
         {route === "Wishlist" && <WishlistPage />}
         {route === "Product-Description" && <ProductDesc />}
         {route === "Cart" && <CartPage />}
         <Toast toast={toast} setToast={setToast} />
       </main>
+
+      <section>
+        {route === "Home" && <LandingPage />}
+      </section>
     </div>
   );
 }

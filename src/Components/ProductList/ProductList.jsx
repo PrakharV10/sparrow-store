@@ -16,7 +16,15 @@ function ProductList() {
             return data
     }
 
-    function getFiltered(sortedData, fastDelivery, outOfStock, searchKeyWord) {
+    function searchFilter(data, searchKeyWord) {
+        return data.filter(item => {
+            if (item.name.includes(searchKeyWord) === true || item.brand.includes(searchKeyWord) === true)
+                return item
+            return null
+        })
+    }
+
+    function getFiltered(sortedData, fastDelivery, outOfStock) {
         return sortedData
             .filter(item => {
             if (fastDelivery === true)
@@ -28,16 +36,11 @@ function ProductList() {
                     return item.inStock === true
                 return item
             })
-            .filter(item => {
-                if (item.name.includes(searchKeyWord) === true || item.brand.includes(searchKeyWord) === true)
-                    return item
-                return null
-            })
     }
 
-
-    const sortedData = getSorted(data, state.sortBy)
-    const filteredData = getFiltered(sortedData, state.fastDelivery, state.outOfStock, state.searchKeyWord)
+    const searchedData = searchFilter(data, state.searchKeyWord)
+    const sortedData = getSorted(searchedData, state.sortBy)
+    const filteredData = getFiltered(sortedData, state.fastDelivery, state.outOfStock)
 
     return (
         <div className="product-list">

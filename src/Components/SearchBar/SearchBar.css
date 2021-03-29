@@ -7,6 +7,13 @@
     margin: .5rem auto;
 }
 
+.search-bar button{
+    padding-top: 2px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
 .search-bar input{
     border : none;
     padding :.7rem;
