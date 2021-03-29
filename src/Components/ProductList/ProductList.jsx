@@ -18,7 +18,7 @@ function ProductList() {
 
     function searchFilter(data, searchKeyWord) {
         return data.filter(item => {
-            if (item.name.includes(searchKeyWord) === true || item.brand.includes(searchKeyWord) === true)
+            if (item.name.toLowerCase().includes(searchKeyWord.toLowerCase()) === true || item.brand.toLowerCase().includes(searchKeyWord.toLowerCase()) === true)
                 return item
             return null
         })
