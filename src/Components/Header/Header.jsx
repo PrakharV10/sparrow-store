@@ -7,7 +7,7 @@ function Header() {
     return (
         <header className="header">
             <div className="logo">
-                PHOENIX
+                SPARROW
             </div>
             <SearchBar />
         </header>
