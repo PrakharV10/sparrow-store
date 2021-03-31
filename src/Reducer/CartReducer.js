@@ -1,3 +1,4 @@
+const DATA_FROM_SERVER = "DATA_FROM_SERVER";
 const ADD_TO_WISHLIST = "ADDTOWISHLIST"
 const REMOVE_FROM_WISHLIST = "REMOVE_FROM_WISHLIST"
 const ADD_TO_CART = "ADD_TO_CART";
@@ -7,10 +8,12 @@ const TOGGLE_STOCK = "TOGGLE_STOCK";
 const TOGGLE_DELIVERY = "TOGGLE_DELIVERY";
 const SEARCH_FILTER = "SEARCH_FILTER";
 const DECREASE_CART_ITEM_QUANTITY = "DECREASE_CART_ITEM_QUANTITY";
-const INCREASE_CART_ITEM_QUANTITY = "INCREASE_CART_ITEM_QUANTITY"
+const INCREASE_CART_ITEM_QUANTITY = "INCREASE_CART_ITEM_QUANTITY";
 
 export function dispatchFunc(state, {type,payload}) {
     switch (type) {
+        case DATA_FROM_SERVER:
+            return {...state, data : payload}
         case ADD_TO_WISHLIST:
             return { ...state, wishList: [...state.wishList, payload] }
         case REMOVE_FROM_WISHLIST:
@@ -37,6 +40,7 @@ export function dispatchFunc(state, {type,payload}) {
 };
 
 export const initialState = {
+    data: [],
     cart: [],
     wishList: [],
     sortBy: null,

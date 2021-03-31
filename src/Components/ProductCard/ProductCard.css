@@ -8,7 +8,7 @@
 .cards-img{
     overflow: hidden;
     text-align: center;
-    align-content: center;
+    align-content: center; 
     height: 280px; 
     min-height: 85%;
 }

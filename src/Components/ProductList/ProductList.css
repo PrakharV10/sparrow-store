@@ -2,6 +2,7 @@
     background-color: var(--white-100);
     padding: 2rem;
     margin-bottom: 2rem;
+    min-height: 50vh;
 }
 
 .product-display{

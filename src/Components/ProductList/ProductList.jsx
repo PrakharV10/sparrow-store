@@ -1,11 +1,26 @@
-import React from 'react'
+import React, { useEffect} from 'react'
+import axios from 'axios'
+
 import ProductCard from '../ProductCard/ProductCard'
 import { useCart } from '../../Context/Cart-Context'
 import './ProductList.css'
 
 function ProductList() {
 
-    const { data,state } = useCart();
+    const { state, dispatch } = useCart();
+    
+    const getServerData = async () => {
+        try {
+            const { data : {products}} = await axios.get('/api/products');
+            dispatch({ type: "DATA_FROM_SERVER", payload: products })
+        } catch (err) {
+          console.log(err);
+        }
+    }
+
+    useEffect(() => {
+        getServerData()
+    }, [])
 
     function getSorted(data, sortBy) {
         if (sortBy && sortBy === "HIGH_TO_LOW")
@@ -38,7 +53,7 @@ function ProductList() {
             })
     }
 
-    const searchedData = searchFilter(data, state.searchKeyWord)
+    const searchedData = searchFilter(state.data, state.searchKeyWord)
     const sortedData = getSorted(searchedData, state.sortBy)
     const filteredData = getFiltered(sortedData, state.fastDelivery, state.outOfStock)
 
@@ -46,7 +61,7 @@ function ProductList() {
         <div className="product-list">
             <div className="product-display">
                 {
-                    filteredData.slice(0,12).map((product) => {
+                    filteredData.slice(0, 12).map((product) => {
                         return (
                             <div key={product.id}>
                                 <ProductCard
