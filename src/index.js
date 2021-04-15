@@ -1,22 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { CartProvider, CurrProdProvider, RouteProvider, ToastProvider } from './Context/Cart-Context';
+import { CartProvider, ToastProvider } from './Context/Cart-Context';
 import mockServer from './api/mock.server';
+import { BrowserRouter } from 'react-router-dom';
 
 mockServer();
 
 ReactDOM.render(
   <React.StrictMode>
-    <CartProvider>
-      <RouteProvider>
-        <CurrProdProvider>
-          <ToastProvider>
-            <App />
-          </ToastProvider>
-        </CurrProdProvider>
-      </RouteProvider>
-    </CartProvider>
+    <BrowserRouter >
+      <CartProvider>
+        <ToastProvider>
+          <App />
+        </ToastProvider>
+      </CartProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

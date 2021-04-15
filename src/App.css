@@ -26,13 +26,13 @@ body{
     --white-100 : #FFF;
 }
 
-main{
+.common-wrapper{
     height: max-content;
     margin: 0 4rem;
 }
 
 @media screen and (max-width : 768px){
-    main{
+    .common-wrapper{
         margin: 0 1rem;
     }
 }

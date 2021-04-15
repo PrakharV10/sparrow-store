@@ -1,14 +1,30 @@
 import React from 'react'
+import { Link, useParams } from 'react-router-dom'
 import ProductShot from '../../Components/ProductDescShot/ProductShot'
 import ProductDetails from '../../Components/ProductDetails/ProductDetails'
+import { useCart } from '../../Context/Cart-Context'
 import './ProductDesc.css'
 
 function ProductDesc() {
+
+    const { id } = useParams();
+    const { state } = useCart();
+
+    const current = state.data.find(one => one.id === id);
+
     return (
-        <div className="product-desc">
-            <div className="container">
-                <ProductShot />
-                <ProductDetails />
+        <div className="common-wrapper">
+            <div className="pagination">
+                <Link to="/">
+                    Home
+                </Link>{" | "}
+                {current.name}
+            </div>
+            <div className="product-desc">
+                <div className="container">
+                    <ProductShot current={current}/>
+                    <ProductDetails current={current} />
+                </div>
             </div>
         </div>
     )

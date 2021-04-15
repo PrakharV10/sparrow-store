@@ -1,16 +1,15 @@
 import React from 'react'
-import { useCart, useCurrProduct, useRoute } from '../../Context/Cart-Context'
+import { useNavigate } from 'react-router';
+import { useCart} from '../../Context/Cart-Context'
 import './WishCard.css'
 
 function WishCard({ wish }) {
     
     const { dispatch } = useCart();
-    const { setCurrent } = useCurrProduct();
-    const { setRoute } = useRoute();
+    const navigate = useNavigate();
 
     function cardClickHandle() {
-        setCurrent(wish)
-        setRoute("Product-Description")
+        navigate(`/products/${wish.id}`)
     }
 
     function handleDeleteWish(e) {

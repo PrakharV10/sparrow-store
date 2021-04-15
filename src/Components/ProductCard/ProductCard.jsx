@@ -1,14 +1,13 @@
 import React from 'react'
-import { useCart, useCurrProduct, useRoute, useToast } from '../../Context/Cart-Context'
+import { useNavigate } from 'react-router';
+import { useCart, useToast } from '../../Context/Cart-Context'
 import './ProductCard.css'
 
 function ProductCard({ product }) {
 
     const { toast, setToast } = useToast();
-    
+    const navigate = useNavigate();
     const { state, dispatch } = useCart();
-    const { setCurrent } = useCurrProduct();
-    const { setRoute } = useRoute();
 
     function searchWishList() {
         if (state.wishList.filter((wish) => wish.id === product.id).length === 0) {
@@ -34,8 +33,7 @@ function ProductCard({ product }) {
     }
 
     function cardClickHandle() {
-        setCurrent(product)
-        setRoute("Product-Description")
+        navigate(`/products/${product.id}`)
     }
 
 

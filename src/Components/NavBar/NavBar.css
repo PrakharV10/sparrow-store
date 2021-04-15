@@ -16,14 +16,6 @@
     display: flex;
 }
 
-.left-nav-links .active{
-    color: var(--yellow-500);
-}
-
-.right-nav-links .active{
-    color : var(--yellow-500)
-}
-
 .left-nav-links li{
     list-style: none;
     padding: 0 2rem 0 0;

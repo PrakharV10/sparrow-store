@@ -1,12 +1,12 @@
 import React from 'react'
-import { useCart, useCurrProduct, useRoute } from '../../Context/Cart-Context'
+import { useNavigate } from 'react-router';
+import { useCart } from '../../Context/Cart-Context'
 import './CartCard.css'
 
 function CartCard({product}) {
 
-    const { setRoute } = useRoute();
-    const { setCurrent } = useCurrProduct();
-    const {  dispatch } = useCart();
+    const { dispatch } = useCart();
+    const navigate = useNavigate();
 
     function quantityHandler(e,oprn) {
         e.stopPropagation();
@@ -20,8 +20,7 @@ function CartCard({product}) {
     }
 
     function cardClickHandle() {
-        setCurrent(product)
-        setRoute("Product-Description")
+        navigate(`/products/${product.id}`)
     }
 
     return (

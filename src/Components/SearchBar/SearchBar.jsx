@@ -1,17 +1,18 @@
 import React, { useState } from 'react'
-import { useCart, useRoute } from '../../Context/Cart-Context';
+import { useNavigate } from 'react-router';
+import { useCart } from '../../Context/Cart-Context';
 import './SearchBar.css';
 
 function SearchBar() {
 
     const { dispatch } = useCart();
     const [input, setInput] = useState("");
-    const { setRoute } = useRoute();
+    const navigate = useNavigate();
 
     function handleClick(e) {
         e.preventDefault();
         dispatch({ type: "SEARCH_FILTER", payload: input })
-        setRoute("Products")
+        navigate("/products")
     }
 
     return (

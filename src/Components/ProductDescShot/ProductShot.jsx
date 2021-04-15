@@ -1,12 +1,15 @@
 import React from 'react'
-import { useCart, useCurrProduct, useToast } from '../../Context/Cart-Context'
+import { useParams } from 'react-router';
+import { useCart, useToast } from '../../Context/Cart-Context'
 import './ProductShot.css'
 
 function ProductShot() {
 
     const { state,dispatch } = useCart();
-    const { current } = useCurrProduct();
     const { toast, setToast } = useToast();
+    const { id } = useParams();
+    
+    const current = state.data.find(one => one.id === id);
 
     function searchWishList() {
         if (state.wishList.filter((wish) => wish.id === current.id).length === 0) {

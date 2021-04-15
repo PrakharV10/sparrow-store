@@ -20,46 +20,7 @@ export function useCart() {
 }
 
 
-// Current Product Context
-const CurrProdContext = createContext();
 
-export function CurrProdProvider({ children }) {
-
-    const [current, setCurrent] = useState([]);
-
-    return (
-        <CurrProdContext.Provider value={{current, setCurrent}}>
-            {children}
-        </CurrProdContext.Provider>
-    )
-}
-
-export function useCurrProduct() {
-    return useContext(CurrProdContext);
-}
-
-
-// Current Route Context
-const RouteContext = createContext();
-
-export function RouteProvider({ children }) {
-    
-    const [route, setRoute] = useState("Home");
-    // Home, Cart, Wishlist, Products, Account, Product-Description
-
-    return (
-        <RouteContext.Provider value={{route,setRoute}}>
-            {children}
-        </RouteContext.Provider>
-    )
-}
-
-export function useRoute() {
-    return useContext(RouteContext);
-}
-
-
-// Toast Show Context
 const ToastContext = createContext();
 
 export function ToastProvider({ children }) {

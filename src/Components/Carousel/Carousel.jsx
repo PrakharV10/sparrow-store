@@ -1,10 +1,8 @@
 import React from 'react'
-import { useRoute } from '../../Context/Cart-Context'
+import { Link } from 'react-router-dom'
 import './Carousel.css'
 
 function Carousel() {
-
-    const { setRoute } = useRoute();
 
     return (
         <div className="carousel">
@@ -16,10 +14,11 @@ function Carousel() {
                 <div className="title">
                     SEASON SALE
                 </div>
-                <button
-                    onClick = {() => setRoute("Products")}
-                    className="btn btn-black">SHOP NOW
-                </button>
+                <Link to="/products">
+                    <button
+                        className="btn btn-black">SHOP NOW
+                    </button>
+                </Link>
             </div>
         </div>
     )
