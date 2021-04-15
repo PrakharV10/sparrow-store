@@ -21,7 +21,7 @@ function ProductDetails() {
         if (searchCart() === false)
             dispatch({ type: "ADD_TO_CART", payload: current })
         else
-            navigate('cart')
+            navigate('/cart')
     }
 
     return (
