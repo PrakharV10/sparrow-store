@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom';
-import { useCart } from '../../Context/Cart-Context'
+import { useCart } from '../../Context/context'
 import './NavBar.css'
 
 function NavBar() {

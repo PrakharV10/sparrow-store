@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router';
-import { useCart, useToast } from '../../Context/Cart-Context'
+import { useCart, useToast } from '../../Context/context'
 import './ProductShot.css'
 
 function ProductShot() {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router';
-import { useCart} from '../../Context/Cart-Context'
+import { useCart} from '../../Context/context'
 import './WishCard.css'
 
 function WishCard({ wish }) {

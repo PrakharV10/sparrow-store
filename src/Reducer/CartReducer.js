@@ -1,4 +1,5 @@
-const DATA_FROM_SERVER = "DATA_FROM_SERVER";
+import data from "../Product";
+
 const ADD_TO_WISHLIST = "ADDTOWISHLIST"
 const REMOVE_FROM_WISHLIST = "REMOVE_FROM_WISHLIST"
 const ADD_TO_CART = "ADD_TO_CART";
@@ -12,8 +13,6 @@ const INCREASE_CART_ITEM_QUANTITY = "INCREASE_CART_ITEM_QUANTITY";
 
 export function dispatchFunc(state, {type,payload}) {
     switch (type) {
-        case DATA_FROM_SERVER:
-            return {...state, data : payload}
         case ADD_TO_WISHLIST:
             return { ...state, wishList: [...state.wishList, payload] }
         case REMOVE_FROM_WISHLIST:
@@ -40,7 +39,7 @@ export function dispatchFunc(state, {type,payload}) {
 };
 
 export const initialState = {
-    data: [],
+    data: data,
     cart: [],
     wishList: [],
     sortBy: null,

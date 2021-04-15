@@ -1,26 +1,11 @@
-import React, { useEffect} from 'react'
-import axios from 'axios'
-
+import React from 'react'
 import ProductCard from '../ProductCard/ProductCard'
-import { useCart } from '../../Context/Cart-Context'
+import { useCart } from '../../Context/context'
 import './ProductList.css'
 
 function ProductList() {
 
-    const { state, dispatch } = useCart();
-    
-    const getServerData = async () => {
-        try {
-            const { data : {products}} = await axios.get('/api/products');
-            dispatch({ type: "DATA_FROM_SERVER", payload: products })
-        } catch (err) {
-          console.log(err);
-        }
-    }
-
-    useEffect(() => {
-        getServerData()
-    }, [])
+    const { state } = useCart();
 
     function getSorted(data, sortBy) {
         if (sortBy && sortBy === "HIGH_TO_LOW")

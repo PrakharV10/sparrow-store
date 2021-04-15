@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router';
-import { useCart } from '../../Context/Cart-Context'
+import { useCart } from '../../Context/context'
 
 import './ProductDetails.css'
 

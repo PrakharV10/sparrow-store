@@ -1,5 +1,5 @@
 import React from 'react'
-import { useCart } from '../../Context/Cart-Context'
+import { useCart } from '../../Context/context'
 import './SideBar.css'
 
 function SideBar() {

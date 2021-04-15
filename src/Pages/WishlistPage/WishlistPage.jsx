@@ -2,7 +2,7 @@ import React from 'react'
 import EmptyWish from '../../Components/EmptyWish/EmptyWish';
 import Pagination from '../../Components/Pagination/Pagination';
 import WishCard from '../../Components/WishCard/WishCard';
-import { useCart } from '../../Context/Cart-Context'
+import { useCart } from '../../Context/context'
 import './wishlistPage.css'
 
 function WishlistPage() {

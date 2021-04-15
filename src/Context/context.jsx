@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useReducer, useState } from 'react';
+import { authReducer, initialAuthState } from '../Reducer/authReducer.js';
 import { dispatchFunc, initialState } from '../Reducer/CartReducer.js';
 
 // Cart, Wishlist, Products Context 
@@ -30,7 +31,7 @@ export function ToastProvider({ children }) {
     });
 
     return (
-        <ToastContext.Provider value={{toast,setToast}}>
+        <ToastContext.Provider value={{ toast, setToast }}>
             {children}
         </ToastContext.Provider>
     )
@@ -38,4 +39,22 @@ export function ToastProvider({ children }) {
 
 export function useToast() {
     return useContext(ToastContext)
+}
+
+
+const AuthContext = createContext();
+
+export function AuthProvider({ children }) {
+    
+    const [state, dispatch] = useReducer(authReducer, initialAuthState);
+
+    return (
+        <AuthContext.Provider value={{ state, dispatch }}>
+            {children}
+        </AuthContext.Provider>
+    )
+}
+
+export function useAuth() {
+    return useContext(AuthContext)
 }

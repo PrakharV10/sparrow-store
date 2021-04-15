@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import ProductShot from '../../Components/ProductDescShot/ProductShot'
 import ProductDetails from '../../Components/ProductDetails/ProductDetails'
-import { useCart } from '../../Context/Cart-Context'
+import { useCart } from '../../Context/context'
 import './ProductDesc.css'
 
 function ProductDesc() {

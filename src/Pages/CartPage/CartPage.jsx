@@ -3,7 +3,7 @@ import CartCard from '../../Components/CartCard/CartCard';
 import EmptyCart from '../../Components/EmptyCart/EmptyCart';
 import Pagination from '../../Components/Pagination/Pagination';
 import PriceTotal from '../../Components/PriceTotal/PriceTotal';
-import { useCart } from '../../Context/Cart-Context'
+import { useCart } from '../../Context/context'
 import './CartPage.css'
 
 function CartPage() {
