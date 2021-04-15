@@ -65,3 +65,19 @@
     font-weight: 500;
 }
 
+.alert.error{
+    background-color :#FDE4E4;
+    color : red;
+    border-radius: 2px;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 1.5rem 2rem 0; 
+    width: initial;
+}
+
+.alert svg{
+    width: 20px;
+    height: 20px;
+}

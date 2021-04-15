@@ -37,7 +37,7 @@ function Login() {
             }
         } catch (err) {
             console.log(JSON.parse(err))
-            setErrorMessage("")
+            setErrorMessage("Something went wrong")
             setLoading(false);
         }
     }
@@ -50,10 +50,19 @@ function Login() {
         <div className="login-page common-wrapper">
             <Pagination />
             <div className="login-modal-bg">
-                <form onSubmit={e => loginSubmitHandler(e)} className="login-modal">
+                <form
+                    onSubmit={e => loginSubmitHandler(e)}
+                    className="login-modal"
+                >
                     <div className="login-head">
                         LOGIN
                     </div>
+
+                    {errorMessage && <div className="alert error">
+                        <svg width="1em" height="1em" viewBox="0 0 24 24"><path d="M13 13h-2V7h2m0 10h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2z" fill="currentColor"></path></svg>
+                        {errorMessage}
+                    </div>}
+
                     <div className="login-fields">
                         <input
                             type="email"
