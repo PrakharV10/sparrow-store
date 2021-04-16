@@ -23,13 +23,11 @@
 }
 
 .overlay-text{
-    color : var(--white-100);
     font-size: 2rem;
     text-transform: uppercase;
     font-weight: 600;
     font-family: 'Poppins', sans-serif;
     transition: all .3s ease;
-    cursor: pointer;
 }
 
 .overlay-card:hover > .overlay-text{

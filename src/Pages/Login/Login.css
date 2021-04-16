@@ -52,21 +52,6 @@
     padding: 0 0rem;
 }
 
-.action-button .btn-black{
-    margin: 1rem 0 .7rem;
-    width: 100%;
-    color: var(--white-100);
-    background-color: var(--black-900);
-    font-weight: 500;
-    border-radius: 2px;
-    letter-spacing: 2px;
-}
-
-.action-button .btn-black:hover{
-    background-color: var(--gray-800);
-    color: var(--white-100);
-}
-
 .sub-text{
     margin: .5rem 0 1rem;
     text-align: center;

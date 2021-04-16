@@ -102,4 +102,8 @@
     .mid-nav-links{
         display: none;
     }
+
+    .right-nav-links svg{
+        margin-left: 1.2rem;
+    }
 }
