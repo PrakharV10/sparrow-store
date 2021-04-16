@@ -75,6 +75,7 @@
 
     .cards-img{
         height: 166px;
+        max-width: 187px;
     }
 
     .cards .wishlist-ico{

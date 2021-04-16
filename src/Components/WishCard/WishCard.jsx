@@ -21,8 +21,8 @@ function WishCard({ wish }) {
         <div
             onClick={cardClickHandle}
             className="cards">
-            <div className="cards-img wish-img">
-                <img src={wish.image} alt="cards-pic"/>
+            <div className="cards-img">
+                <img src="https://rukminim1.flixcart.com/image/416/416/kn22m4w0/mobile/9/k/s/galaxy-f12-sm-f127glbiins-samsung-original-imagftmhhhvghq7w.jpeg?q=70" alt="cards-pic"/>
             </div>
             <button
                 onClick = {(e) => handleDeleteWish(e)}

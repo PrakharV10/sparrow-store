@@ -1,9 +1,3 @@
-.cards:hover > .wish-img img{
-    transform: scale(1);
-    filter: blur(0);
-    -webkit-filter: blur(0);
-}
-
 .cross-btn{
     border: none;
     outline: none;

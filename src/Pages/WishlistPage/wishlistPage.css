@@ -4,8 +4,7 @@
 
 .wishlist{
     background-color: var(--white-100);
-    padding: 0 1rem 1rem;
-    min-height: 500px;
+    min-height: 50vh;
 }
 
 .wish-grid{
@@ -35,11 +34,11 @@
     .wishlist{
         background-color: transparent;
         padding: 0;
-        margin: 0 -.6rem 2rem;
+        margin: 0 0 2rem;
     }
 
     .wish-grid{
         grid-template-columns: 1fr 1fr;
-        grid-gap: 5px;
+        grid-gap: 20px;
     }
 }
