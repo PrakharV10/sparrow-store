@@ -14,7 +14,7 @@ function ProductCard({ product }) {
             return false
         }return true
     }
-
+    
     function wishListToggle(e) {
         e.stopPropagation()
         if (searchWishList() === true) {
@@ -43,7 +43,7 @@ function ProductCard({ product }) {
             onClick={cardClickHandle}
         >
             <div className="cards-img">
-                <img src={product.image} alt="cards-pic" />
+                <img src="https://rukminim1.flixcart.com/image/416/416/kn22m4w0/mobile/9/k/s/galaxy-f12-sm-f127glbiins-samsung-original-imagftmhhhvghq7w.jpeg?q=70" alt="cards-pic" />
             </div>
             <button onClick={(e) => wishListToggle(e)} className="wishlist-ico">
                 {searchWishList() === true
@@ -61,9 +61,6 @@ function ProductCard({ product }) {
             <div className="item-price">
                 <span className="now">
                     Rs. {product.price}
-                </span>
-                <span className="before">
-                    
                 </span>
             </div>
         </div>

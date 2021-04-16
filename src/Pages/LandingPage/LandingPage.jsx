@@ -6,9 +6,9 @@ import './LandingPage.css'
 function LandingPage() {
     return (
         <div className="landing-page">
-            <Carousel />
+            {/* <Carousel /> */}
             <main>
-                <OverlayCard />
+                {/* <OverlayCard /> */}
             </main>
         </div>
     )

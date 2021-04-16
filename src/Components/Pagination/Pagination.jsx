@@ -11,7 +11,7 @@ function Pagination() {
         <div className="pagination">
             <Link to="/">
                 Home
-            </Link>{" "}|{" "}
+            </Link>{` `}|{"  "}
             <Link to={pathname}>
                 {pathname.substr(1)}
             </Link>

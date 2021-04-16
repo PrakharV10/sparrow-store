@@ -1,60 +1,91 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom';
 import { useAuth, useCart } from '../../Context/context'
+import NavSideBar from '../NavSideBar/NavSideBar';
+import SearchBar from '../SearchBar/SearchBar';
 import './NavBar.css'
 
 function NavBar() {
     
     const { state } = useCart();
-    const { state: { isUserLoggedIn } } = useAuth();
+    const [showMenu, setShowMenu] = useState(false);
+    const [showSearch, setShowSearch] = useState(false);
 
     return (
         <nav className="nav-bar">
-            <ul className="left-nav-links">
+            <div className="left-nav">
+                <svg onClick={() => setShowMenu(!showMenu)} width="1em" height="1em" viewBox="0 0 512 512">
+                    <path d="M432 176H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16z" fill="currentColor"></path><path d="M432 272H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16z" fill="currentColor"></path><path d="M432 368H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16z" fill="currentColor"></path>
+                </svg>
+                <Link to="/">
+                    PHOENIX
+                </Link>
+            </div>
+
+            <ul className="mid-nav-links">
                 <li>
                     <NavLink to="/">
-                        Home
+                        HOME
                     </NavLink>
                 </li>
                 <li>
                     <NavLink to="/products">
-                        Products
+                        PRODUCTS
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/products">
+                        SKETCHBOOKS
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/products">
+                        TABLETS
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/products">
+                        LAPTOPS
                     </NavLink>
                 </li>
             </ul>
 
             <div className="right-nav-links">
                 <div>
+                    <span className="badge">
+                        <svg onClick={() => setShowSearch(true)} width="1em" height="1em" viewBox="0 0 32 32">
+                            <path d="M29 27.586l-7.552-7.552a11.018 11.018 0 1 0-1.414 1.414L27.586 29zM4 13a9 9 0 1 1 9 9a9.01 9.01 0 0 1-9-9z" fill="currentColor">
+                            </path>
+                        </svg>
+                    </span>
+
+                    <SearchBar showSearch={showSearch} setShowSearch={setShowSearch} />
+
+                    <Link to="/account">
+                        <span className="badge">
+                            <svg width="1em" height="1em" viewBox="0 0 24 24"><path d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z" stroke="currentColor" fill="transparent" strokeWidth = "1.7px"></path></svg>
+                        </span>
+                    </Link>
+
                     <Link to="/wishlist">
                         <span className="badge">
-                            <svg
-                                width="1em" height="1em" viewBox="0 0 16 16">
-                                <g fill="currentColor">
-                                <path d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385c.92 1.815 2.834 3.989 6.286 6.357c3.452-2.368 5.365-4.542 6.286-6.357c.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"></path></g>
+                            <svg viewBox="0 0 256 256">
+                                <path d="M128 224a7.998 7.998 0 0 1-3.91-1.02C119.84 220.6 20 163.863 20 92a60.02 60.02 0 0 1 108-36.04A60.02 60.02 0 0 1 236 92c0 30.565-17.714 62.005-52.648 93.446a317.366 317.366 0 0 1-51.443 37.534A7.998 7.998 0 0 1 128 224zm-3.91-14.98zM80 48a44.05 44.05 0 0 0-44 44c0 55.245 73.98 103.719 91.997 114.7C146.007 195.707 220 147.163 220 92a44.009 44.009 0 0 0-84.618-16.95a8 8 0 0 1-14.764 0A43.912 43.912 0 0 0 80 48z" fill="currentColor"></path>
                             </svg>
                             {state.wishList.length !== 0 && <div className="number">{state.wishList.length}</div>}
                         </span>
-                    </Link>                        
-
-                    {isUserLoggedIn && <Link to="/account" >
-                        <span className="badge">
-                            <svg
-                                width="1em" height="1em" viewBox="0 0 16 16"><g fill="currentColor"><path d="M16 7.992C16 3.58 12.416 0 8 0S0 3.58 0 7.992c0 2.43 1.104 4.62 2.832 6.09c.016.016.032.016.032.032c.144.112.288.224.448.336c.08.048.144.111.224.175A7.98 7.98 0 0 0 8.016 16a7.98 7.98 0 0 0 4.48-1.375c.08-.048.144-.111.224-.16c.144-.111.304-.223.448-.335c.016-.016.032-.016.032-.032c1.696-1.487 2.8-3.676 2.8-6.106zm-8 7.001c-1.504 0-2.88-.48-4.016-1.279c.016-.128.048-.255.08-.383a4.17 4.17 0 0 1 .416-.991c.176-.304.384-.576.64-.816c.24-.24.528-.463.816-.639c.304-.176.624-.304.976-.4A4.15 4.15 0 0 1 8 10.342a4.185 4.185 0 0 1 2.928 1.166c.368.368.656.8.864 1.295c.112.288.192.592.24.911A7.03 7.03 0 0 1 8 14.993zm-2.448-7.4a2.49 2.49 0 0 1-.208-1.024c0-.351.064-.703.208-1.023c.144-.32.336-.607.576-.847c.24-.24.528-.431.848-.575c.32-.144.672-.208 1.024-.208c.368 0 .704.064 1.024.208c.32.144.608.336.848.575c.24.24.432.528.576.847c.144.32.208.672.208 1.023c0 .368-.064.704-.208 1.023a2.84 2.84 0 0 1-.576.848a2.84 2.84 0 0 1-.848.575a2.715 2.715 0 0 1-2.064 0a2.84 2.84 0 0 1-.848-.575a2.526 2.526 0 0 1-.56-.848zm7.424 5.306c0-.032-.016-.048-.016-.08a5.22 5.22 0 0 0-.688-1.406a4.883 4.883 0 0 0-1.088-1.135a5.207 5.207 0 0 0-1.04-.608a2.82 2.82 0 0 0 .464-.383a4.2 4.2 0 0 0 .624-.784a3.624 3.624 0 0 0 .528-1.934a3.71 3.71 0 0 0-.288-1.47a3.799 3.799 0 0 0-.816-1.199a3.845 3.845 0 0 0-1.2-.8a3.72 3.72 0 0 0-1.472-.287a3.72 3.72 0 0 0-1.472.288a3.631 3.631 0 0 0-1.2.815a3.84 3.84 0 0 0-.8 1.199a3.71 3.71 0 0 0-.288 1.47c0 .352.048.688.144 1.007c.096.336.224.64.4.927c.16.288.384.544.624.784c.144.144.304.271.48.383a5.12 5.12 0 0 0-1.04.624c-.416.32-.784.703-1.088 1.119a4.999 4.999 0 0 0-.688 1.406c-.016.032-.016.064-.016.08C1.776 11.636.992 9.91.992 7.992C.992 4.14 4.144.991 8 .991s7.008 3.149 7.008 7.001a6.96 6.96 0 0 1-2.032 4.907z"></path></g>
-                            </svg>
-                        </span>
-                    </Link>}
+                    </Link>                       
 
                     <Link to="/cart">
                         <span className="badge">
-                            <svg
-                                width="1em" height="1em" viewBox="0 0 16 16"><g fill="currentColor"><path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607L1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4a2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4a2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2a1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2a1 1 0 0 1 0-2z"></path></g>
-                            </svg>
+                        <svg width="1em" height="1em" viewBox="0 0 256 256"><path d="M216 64h-40.68a47.99 47.99 0 0 0-94.64 0H40a16.018 16.018 0 0 0-16 16v128a16.018 16.018 0 0 0 16 16h176a16.018 16.018 0 0 0 16-16V80a16.018 16.018 0 0 0-16-16zm-88-24a32.058 32.058 0 0 1 30.987 24H97.013A32.058 32.058 0 0 1 128 40zm88 168H40V80h40v24a8 8 0 0 0 16 0V80h64v24a8 8 0 0 0 16 0V80h40z" fill="currentColor"></path></svg>
                             {state.cart.length !== 0 &&<div className="number">{state.cart.length}</div>}
                         </span>
                     </Link>
                     
                 </div>
             </div>
+            <NavSideBar setShowMenu={setShowMenu} showMenu={showMenu}/>
         </nav>
     )
 }

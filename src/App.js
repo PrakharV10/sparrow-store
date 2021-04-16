@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { Route, Routes } from 'react-router';
 import './App.css';
 
-import Header from './Components/Header/Header';
 import NavBar from './Components/NavBar/NavBar';
 import Toast from './Components/Toast/Toast';
 import { useAuth, useToast } from './Context/context';
@@ -28,7 +27,6 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
       <NavBar />
 
       <Routes >
