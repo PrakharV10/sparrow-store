@@ -47,7 +47,7 @@
 }
 
 .wishlist-ico svg{
-    fill : red;
+    fill : var(--black-900);
     transition: all .3s ease;
 }
 
