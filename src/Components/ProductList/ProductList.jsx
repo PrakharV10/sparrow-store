@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ProductCard from '../ProductCard/ProductCard'
 import { useCart } from '../../Context/context'
 import './ProductList.css'
+import AuthModal from '../AuthModal/AuthModal';
 
 function ProductList() {
 
     const { state } = useCart();
+    const [authModal, setAuthModal] = useState(false)
 
     function getSorted(data, sortBy) {
         if (sortBy && sortBy === "HIGH_TO_LOW")
@@ -50,8 +52,10 @@ function ProductList() {
                         return (
                             <div key={product.id}>
                                 <ProductCard
+                                    setAuthModal = {setAuthModal}
                                     product={product}
                                 />
+                                {authModal && <AuthModal authModal={authModal} setAuthModal={setAuthModal} />}
                             </div>
                         );
                     })

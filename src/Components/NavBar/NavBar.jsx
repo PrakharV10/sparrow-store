@@ -15,9 +15,13 @@ function NavBar() {
     return (
         <nav className="nav-bar">
             <div className="left-nav">
-                <svg onClick={() => setShowMenu(!showMenu)} width="1em" height="1em" viewBox="0 0 512 512">
-                    <path d="M432 176H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16z" fill="currentColor"></path><path d="M432 272H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16z" fill="currentColor"></path><path d="M432 368H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16z" fill="currentColor"></path>
-                </svg>
+                {showMenu ?
+                    <svg onClick = {() => setShowMenu(false)} width="1em" height="1em" viewBox="0 0 512 512"><path d="M289.94 256l95-95A24 24 0 0 0 351 127l-95 95l-95-95a24 24 0 0 0-34 34l95 95l-95 95a24 24 0 1 0 34 34l95-95l95 95a24 24 0 0 0 34-34z" fill="currentColor"></path></svg>
+                    :
+                    <svg onClick={() => setShowMenu(true)} width="1em" height="1em" viewBox="0 0 512 512">
+                        <path d="M432 176H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16z" fill="currentColor"></path><path d="M432 272H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16z" fill="currentColor"></path><path d="M432 368H80c-8.8 0-16-7.2-16-16s7.2-16 16-16h352c8.8 0 16 7.2 16 16s-7.2 16-16 16z" fill="currentColor"></path>
+                    </svg>
+                }
                 <Link to="/">
                     PHOENIX
                 </Link>
