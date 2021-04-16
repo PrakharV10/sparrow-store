@@ -58,6 +58,10 @@ function Login() {
                         LOGIN
                     </div>
 
+                    <div className="login-subhead">
+                        Please enter your email and password.
+                    </div>
+
                     {errorMessage && <div className="alert error">
                         <svg width="1em" height="1em" viewBox="0 0 24 24"><path d="M13 13h-2V7h2m0 10h-2v-2h2M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2z" fill="currentColor"></path></svg>
                         {errorMessage}
@@ -81,8 +85,8 @@ function Login() {
                         />
                     </div>
                     <div className="action-button">
-                        <button className="btn btn-yellow" type="submit">
-                            {loading ? `LOGGIN IN` : `LOG IN`}
+                        <button className="btn btn-black" type="submit">
+                            {loading ? `LOGGIN IN` : `LOGIN`}
                         </button>
                     </div>
                     <div className="sub-text">

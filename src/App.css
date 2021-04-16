@@ -33,6 +33,8 @@ body{
     --off-white : #FAFAFA;
     --pink-800 : #D44787;
     --gray-900 : #1C1B1B;
+    --gray-800 : #423F3F;
+    --gray-300 : #dadada;
 }
 
 .common-wrapper{

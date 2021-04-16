@@ -2,14 +2,15 @@
     height: 70vh;
     display: flex;
     justify-content: center ;
-    /* font-family: 'Poppins', sans-serif; */
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
 }
 
 .login-modal{
     height: max-content;
     min-height: 390px;
-    width: 350px;
-    max-width: 95%;
+    width: 380px;
+    max-width: 98%;
     background-color:  var(--white-100);
     border-radius: 3px;
     padding-bottom: 1rem;
@@ -17,15 +18,21 @@
 
 .login-head{
     text-align: center;
-    font-size: 2rem;
-    font-weight: 500;
-    padding: 1.5rem 2rem;
-    background-color: var(--gray-800);
-    color: var(--yellow-500);
+    font-size: 1.4rem;
+    font-weight: 400;
+    padding: 1rem;
+    color: var(--black-900);
+    letter-spacing: 3px;
+}
+
+.login-subhead{
+    text-align: center;
+    font-size: .9rem;
+    font-weight: 300;
 }
 
 .login-fields{
-    padding: 1.5rem 2rem 0;
+    padding: 1.5rem 0rem 0;
 }
 
 .login-fields input{
@@ -38,31 +45,38 @@
 }
 
 .login-fields input:focus{
-    border: 1.5px solid var(--yellow-600);
+    border: 1.5px solid var(--black-900);
 }
 
 .action-button{
-    padding: 0 2rem;
+    padding: 0 0rem;
 }
 
-.action-button .btn-yellow{
+.action-button .btn-black{
     margin: 1rem 0 .7rem;
     width: 100%;
-    color: var(--gray-900);
-    background-color: var(--yellow-500);
+    color: var(--white-100);
+    background-color: var(--black-900);
     font-weight: 500;
     border-radius: 2px;
+    letter-spacing: 2px;
+}
+
+.action-button .btn-black:hover{
+    background-color: var(--gray-800);
+    color: var(--white-100);
 }
 
 .sub-text{
     margin: .5rem 0 1rem;
     text-align: center;
     font-size: .8rem;
-    color: var(--gray-800);
+    color: var(--gray-900);
 }
 
 .sub-text span{
     font-weight: 500;
+    color: var(--black-900);
 }
 
 .alert.error{

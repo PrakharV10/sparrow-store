@@ -65,7 +65,11 @@ function Signup() {
                     className="login-modal"
                 >
                     <div className="login-head">
-                        SIGN UP
+                        REGISTER
+                    </div>
+
+                    <div className="login-subhead">
+                        Please fill in the information below.
                     </div>
 
                     {errorMessage && <div className="alert error">
@@ -75,8 +79,8 @@ function Signup() {
 
                     <div className="login-fields">
                         <input
-                            placeholder="Username"
-                            type= "name"
+                            placeholder="Name"
+                            type= "text"
                             name="username"
                             value={localInput.username}
                             onChange = {e => setLocalInput({...localInput, username : e.target.value})}
@@ -99,7 +103,7 @@ function Signup() {
                         />
                     </div>
                     <div className="action-button">
-                        <button className="btn btn-yellow" type="submit">
+                        <button className="btn btn-black" type="submit">
                             {loading ? `SIGNING IN` : `SIGN IN`}
                         </button>
                     </div>
