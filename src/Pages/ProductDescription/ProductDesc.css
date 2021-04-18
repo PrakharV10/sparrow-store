@@ -1,7 +1,8 @@
 .product-desc{
     height: max-content;
     background-color: var(--white-100);
-    margin-bottom: 2rem;
+    margin: 2rem auto;
+    width: 80%;
 }
 
 .product-desc .container{
@@ -10,7 +11,13 @@
     height: max-content;
 }
 
-@media screen and (max-width : 768px){
+@media screen and (max-width : 1024px) {
+    .product-desc{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width : 600px){
     .product-desc .container{
         flex-direction: column;
         height: 100%;

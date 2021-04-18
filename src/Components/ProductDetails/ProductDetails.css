@@ -1,20 +1,32 @@
 .product-details{
     flex: 1 1 0;
-    margin: 1rem ;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    margin: 0 2rem ;
+    font-family: 'Poppins', sans-serif;
 }
 
 .product-name{
-    font-size: 1.3rem;
+    font-size: 1.8rem;
+    font-weight: 700;
 }
 
-.product-rating,.product-brand,.stock,.product-text{
+.product-rating{
     font-size: .8rem;
-    font-weight: 500;
+    font-weight: 400;
     letter-spacing: .5px;
     line-height: 1.5rem;
+}
+
+.product-brand,.stock,.product-text{
+    font-size: .8rem;
+    font-weight: 600;
+    letter-spacing: .5px;
+    line-height: 1.5rem;
+}
+
+.product-text{
+    padding-bottom: .5rem;
+    margin-bottom: .5rem;
+    border-bottom: 1px dotted black;
 }
 
 .product-text{
@@ -27,8 +39,11 @@
 }
 
 .product-price{
-    font-weight: 500;
-    font-size: 1.5rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+    padding-bottom: .5rem;
+    border-bottom: 1px dotted var(--black-900);
+    margin: .5rem 0;
 }
 
 .btn-black{
@@ -49,4 +64,19 @@
     background-color: #D8D8D8;
     color : white;
     cursor: default;
+}
+@media screen and (max-width : 1024px){
+    .product-name{
+        font-size: 1.5rem;
+    }
+
+    .product-price{
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width : 600px) {
+    .product-details{
+        margin: 1rem 0;
+    }
 }

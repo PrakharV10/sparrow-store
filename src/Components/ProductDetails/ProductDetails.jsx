@@ -29,8 +29,11 @@ function ProductDetails() {
             <div className="product-name">
                 {current.name}
             </div>
-            <div className="product-rating gray-text">
-                {current.ratings} ratings
+            <div className="product-rating">
+                {current.ratings} reviews
+            </div>
+            <div className="product-price">
+                ${current.price}
             </div>
             <div className="product-brand">
                 Brand : <span className="gray-text">{current.brand}</span> 
@@ -40,9 +43,6 @@ function ProductDetails() {
             </div>
             <div className="product-text">
                 Description : <div className="gray-text">{current.desc}</div>
-            </div>
-            <div className="product-price">
-                ${current.price}
             </div>
             {
                 current.inStock === true ?

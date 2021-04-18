@@ -1,14 +1,15 @@
 .product-shot{
-    flex : 0 0 30vw;
-    height: inherit;
+    flex : 0 0 50vw;
+    max-width: 500px;
+    height: 520px;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid var(--gray-300);
     border-radius: 2px;
     position: relative;
     padding: 1rem;
+    background-color: var(--off-white);
 }
 
 .heart-button{
@@ -44,14 +45,16 @@
 }
 
 
-@media screen and (max-width : 768px){
+@media screen and (max-width : 1024px){
     .product-shot{
-        flex : 0 0 70vw;
+        flex : 0 0 40vw;
+        height: 400px;
     }
 }
 
-@media screen and (max-width : 426px){
-    .product-shot img{
-        height: 200px;
+@media screen and (max-width : 600px){
+    .product-shot{
+        max-width: 100%;
+        flex : 0 0 80vw;
     }
 }
