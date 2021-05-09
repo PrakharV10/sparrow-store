@@ -5,17 +5,17 @@ import './CartCard.css'
 
 function CartCard({product}) {
 
-    const { dispatch } = useCart();
+    const { cartDispatch } = useCart();
     const navigate = useNavigate();
 
     function quantityHandler(e,oprn) {
         e.stopPropagation();
         if (product.qty > 1 && oprn=== "sub")
-            dispatch({type : "DECREASE_CART_ITEM_QUANTITY", payload: product})
+            cartDispatch({type : "DECREASE_CART_ITEM_QUANTITY", payload: product})
         else if(oprn === "add")
-            dispatch({type : "INCREASE_CART_ITEM_QUANTITY", payload: product})
+            cartDispatch({type : "INCREASE_CART_ITEM_QUANTITY", payload: product})
         else
-            dispatch({type: "REMOVE_FROM_CART", payload : product})
+            cartDispatch({type: "REMOVE_FROM_CART", payload : product})
         
     }
 

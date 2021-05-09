@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { CartProvider, ToastProvider } from './Context/context';
+import { LoaderProvider, Puff } from '@agney/react-loading';
+import { CartProvider } from './Context/context';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from './Context/context';
 
@@ -10,9 +11,9 @@ ReactDOM.render(
     <BrowserRouter >
       <AuthProvider>
         <CartProvider>
-          <ToastProvider>
+          <LoaderProvider indicator={<Puff width="100" />}>
             <App />
-          </ToastProvider>
+          </LoaderProvider>
         </CartProvider>
       </AuthProvider>
     </BrowserRouter>

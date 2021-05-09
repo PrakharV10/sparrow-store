@@ -6,7 +6,7 @@ import { useAuth } from '../../Context/context';
 
 function Signup() {
 
-    const { state: { isUserLoggedIn }, dispatch } = useAuth();
+    const { authState: { isUserLoggedIn }, authDispatch } = useAuth();
     let navigate = useNavigate();
 
     const [errorMessage, setErrorMessage] = useState("");
@@ -19,11 +19,11 @@ function Signup() {
 
     async function serverAuthCheck() {
         try {
-            let { data: { success, userId, message }} = await axios.post('https://Sparrow-Store.prakhar10v.repl.co/signup', localInput)
+            let { data: { success, user, message }} = await axios.post('https://Sparrow-Store.prakhar10v.repl.co/signup', localInput)
             if (success) {
                 setLoading(false)
                 setErrorMessage("")
-                dispatch({ type: "SAVE_SIGNUP_DETAILS", payload: userId })
+                authDispatch({ type: "SAVE_LOGIN_SIGNUP_DETAILS", payload: user })
                 navigate('/')
             } else {
                 setErrorMessage(message)

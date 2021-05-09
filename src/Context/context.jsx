@@ -1,16 +1,16 @@
-import React, { createContext, useContext, useReducer, useState } from 'react';
+import React, { createContext, useContext, useReducer, useState} from 'react';
+import { cartReducer, initialCartState } from '../Reducer/CartReducer.js';
 import { authReducer, initialAuthState } from '../Reducer/authReducer.js';
-import { dispatchFunc, initialState } from '../Reducer/CartReducer.js';
 
 // Cart, Wishlist, Products Context 
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
     
-    const [state, dispatch] = useReducer(dispatchFunc, initialState);
+    const [cartState, cartDispatch] = useReducer(cartReducer, initialCartState);
 
     return (
-        <CartContext.Provider value={{ state, dispatch }}>
+        <CartContext.Provider value={{ cartState, cartDispatch }}>
             {children}
         </CartContext.Provider>
     )
@@ -21,35 +21,14 @@ export function useCart() {
 }
 
 
-
-const ToastContext = createContext();
-
-export function ToastProvider({ children }) {
-    const [toast, setToast] = useState({
-        show: false,
-        action : "Add"
-    });
-
-    return (
-        <ToastContext.Provider value={{ toast, setToast }}>
-            {children}
-        </ToastContext.Provider>
-    )
-}
-
-export function useToast() {
-    return useContext(ToastContext)
-}
-
-
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
     
-    const [state, dispatch] = useReducer(authReducer, initialAuthState);
+    const [authState, authDispatch] = useReducer(authReducer, initialAuthState);
 
     return (
-        <AuthContext.Provider value={{ state, dispatch }}>
+        <AuthContext.Provider value={{ authState, authDispatch }}>
             {children}
         </AuthContext.Provider>
     )

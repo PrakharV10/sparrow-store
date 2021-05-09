@@ -8,7 +8,7 @@ import './CartPage.css'
 
 function CartPage() {
 
-    const { state } = useCart();
+    const { cartState } = useCart();
 
 
     return (
@@ -16,15 +16,15 @@ function CartPage() {
             <Pagination />
             <div className="cart-page">
                 {
-                    state.cart.length !== 0 ?
+                    cartState.cart.length !== 0 ?
                         <>
                             <div className="cart-container">
                             <div className="head">
-                                My Cart ({state.cart.length})
+                                My Cart ({cartState.cart.length})
                             </div>
                             <div className="cart-list">
                                 {
-                                    state.cart.map(product => {
+                                    cartState.cart.map(product => {
                                         return (
                                             <div key={product.id}>
                                                 <CartCard product={product}/>

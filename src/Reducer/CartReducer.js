@@ -1,6 +1,6 @@
-import data from "../Product";
-
-const ADD_TO_WISHLIST = "ADDTOWISHLIST"
+const SAVE_USER_ON_LOGIN = "SAVE_USER_ON_LOGIN"
+const GET_PRODUCTS_FROM_SERVER = "GET_PRODUCTS_FROM_SERVER"
+const ADD_TO_WISHLIST = "ADD_TO_WISHLIST"
 const REMOVE_FROM_WISHLIST = "REMOVE_FROM_WISHLIST"
 const ADD_TO_CART = "ADD_TO_CART";
 const REMOVE_FROM_CART = "REMOVE_FROM_CART";
@@ -11,12 +11,16 @@ const SEARCH_FILTER = "SEARCH_FILTER";
 const DECREASE_CART_ITEM_QUANTITY = "DECREASE_CART_ITEM_QUANTITY";
 const INCREASE_CART_ITEM_QUANTITY = "INCREASE_CART_ITEM_QUANTITY";
 
-export function dispatchFunc(state, {type,payload}) {
+export function cartReducer(state, {type,payload}) {
     switch (type) {
+        case SAVE_USER_ON_LOGIN:
+            return { ...state, cart: payload.cart, wishList: payload.wishlist }
+        case GET_PRODUCTS_FROM_SERVER:
+            return {...state, data : payload}
         case ADD_TO_WISHLIST:
-            return { ...state, wishList: [...state.wishList, payload] }
+            return { ...state, wishList: payload }
         case REMOVE_FROM_WISHLIST:
-            return { ...state, wishList: state.wishList.filter(wish => wish.id !== payload.id) }
+            return { ...state, wishList: payload }
         case ADD_TO_CART:
             return { ...state, wishList: state.wishList.filter(wish => wish.id !== payload.id), cart: [...state.cart, { ...payload, qty: 1 }] }
         case INCREASE_CART_ITEM_QUANTITY:
@@ -38,8 +42,8 @@ export function dispatchFunc(state, {type,payload}) {
     }
 };
 
-export const initialState = {
-    data: data,
+export const initialCartState = {
+    data: [],
     cart: [],
     wishList: [],
     sortBy: null,

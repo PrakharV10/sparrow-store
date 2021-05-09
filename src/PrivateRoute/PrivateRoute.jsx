@@ -4,7 +4,7 @@ import { useAuth } from '../Context/context'
 
 function PrivateRoute({ path, ...props }) {
     
-    const { state: { isUserLoggedIn } } = useAuth();
+    const { authState: { isUserLoggedIn } } = useAuth();
 
     return (
         isUserLoggedIn

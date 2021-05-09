@@ -1,36 +1,57 @@
 import React from 'react'
 import { useNavigate } from 'react-router';
-import { useAuth, useCart, useToast } from '../../Context/context'
+import { useAuth, useCart } from '../../Context/context'
 import './ProductCard.css'
+import notifyToast from '../Toast/notifyToast';
+import axios from 'axios';
 
 function ProductCard({ product, setAuthModal }) {
 
-    const { toast, setToast } = useToast();
     const navigate = useNavigate();
-    const { state, dispatch } = useCart();
-    const { state: { isUserLoggedIn } } = useAuth();
+    const { cartState, cartDispatch } = useCart();
+    const { authState: { isUserLoggedIn, currentUserId } } = useAuth();
 
     function searchWishList() {
-        if (state.wishList.filter((wish) => wish.id === product.id).length === 0) {
-            return false
-        }return true
+        if (cartState.wishList.find((wish) => wish === product._id)) {
+            return true
+        }return false
+    }
+
+    async function serverAddToWishlist() {
+        const { data : {success, wishlist, message} } = await axios.post(`https://Sparrow-Store.prakhar10v.repl.co/wishlist/${currentUserId}`, {
+            productId: product._id
+        })
+        if (success === true) {
+            notifyToast("ADDED TO WISHLIST")
+            cartDispatch({ type : "ADD_TO_WISHLIST", payload : wishlist})
+        } else {
+            notifyToast(message)
+        }
+    }
+
+    async function serverRemoveFromWishlist() {
+        const { data : {success, wishlist, message} } = await axios.delete(`https://Sparrow-Store.prakhar10v.repl.co/wishlist/${currentUserId}`, {
+            data: {
+                productId: product._id
+            }
+        })
+        if (success === true) {
+            notifyToast("REMOVED FROM WISHLIST")
+            cartDispatch({ type : "REMOVE_FROM_WISHLIST", payload : wishlist})
+        } else {
+            notifyToast(message)
+        }
     }
     
     function wishListToggle(e) {
         e.stopPropagation()
         if (isUserLoggedIn) {
             if (searchWishList() === true) {
-                setToast({ ...toast, action: "Remov", show: true })
-                setTimeout(() => {
-                    setToast({...toast, action : "Remov", show:false})
-                },2000)
-                dispatch({ type: "REMOVE_FROM_WISHLIST", payload: product })
+                notifyToast("REMOVING FROM WISHLIST")
+                serverRemoveFromWishlist()
             } else {
-                setToast({ ...toast, action: "Add", show: true })
-                setTimeout(() => {
-                    setToast({...toast, action : "Add", show:false})
-                },2000)
-                dispatch({ type : "ADDTOWISHLIST", payload : product })
+                notifyToast("ADDING TO WISHLIST")
+                serverAddToWishlist()                
             }   
         } else {
             setAuthModal(true)

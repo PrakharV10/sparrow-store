@@ -4,7 +4,7 @@ import './SideBar.css'
 
 function SideBar() {
 
-    const { state, dispatch } = useCart();
+    const { cartState, cartDispatch } = useCart();
     const [slider, setSlider] = useState(100)
 
     return (
@@ -50,8 +50,8 @@ function SideBar() {
                     <div className="checkbox">
                         <label htmlFor="checkbox-1">
                             <input
-                                onChange={() => dispatch({ type: "TOGGLE_STOCK" })}
-                                checked = {state.outOfStock === true}
+                                onChange={() => cartDispatch({ type: "TOGGLE_STOCK" })}
+                                checked = {cartState.outOfStock === true}
                                 id="checkbox-1"
                                 name="checkbox"
                                 type="checkbox" />
@@ -59,8 +59,8 @@ function SideBar() {
                         </label>
                         <label htmlFor="checkbox-2">
                             <input
-                                onChange={() => dispatch({ type: "TOGGLE_DELIVERY" })}
-                                checked = {state.fastDelivery === true}
+                                onChange={() => cartDispatch({ type: "TOGGLE_DELIVERY" })}
+                                checked = {cartState.fastDelivery === true}
                                 id="checkbox-2"
                                 name="checkbox"
                                 type="checkbox" />

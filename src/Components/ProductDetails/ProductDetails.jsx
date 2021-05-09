@@ -6,20 +6,20 @@ import './ProductDetails.css'
 
 function ProductDetails() {
 
-    const { state, dispatch } = useCart();
+    const { cartState, cartDispatch } = useCart();
     const { id } = useParams();
     const navigate = useNavigate();
-    const current = state.data.find(one => one.id === id)
+    const current = cartState.data.find(one => one.id === id)
 
     function searchCart() {
-        if (state.cart.filter(item => item.id === current.id).length === 0)
+        if (cartState.cart.filter(item => item.id === current.id).length === 0)
             return false
         return true
     }
 
     function cartButtonHandler() {
         if (searchCart() === false)
-            dispatch({ type: "ADD_TO_CART", payload: current })
+            cartDispatch({ type: "ADD_TO_CART", payload: current })
         else
             navigate('/cart')
     }

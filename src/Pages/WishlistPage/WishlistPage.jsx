@@ -7,13 +7,13 @@ import './wishlistPage.css'
 
 function WishlistPage() {
 
-    const { state } = useCart();
+    const { cartState } = useCart();
 
     return (
         <div className="common-wrapper">
             <Pagination />
             <div className="wishlist-page">
-                {state.wishList.length !== 0 &&
+                {cartState.wishList.length !== 0 &&
                     <>
                         <div className="head">
                         Your Wishlist
@@ -21,7 +21,7 @@ function WishlistPage() {
                         <div className="wishlist">
                             <div className="wish-grid">
                                 {
-                                    state.wishList.map(wish => {
+                                    cartState.wishList.map(wish => {
                                         return (
                                             <div key={wish.id}>
                                                 <WishCard wish={wish} />
@@ -33,7 +33,7 @@ function WishlistPage() {
                         </div>
                     </>
                 }
-                {state.wishList.length === 0 && <EmptyWish />}
+                {cartState.wishList.length === 0 && <EmptyWish />}
             </div>
         </div>
     )

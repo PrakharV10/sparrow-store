@@ -4,9 +4,9 @@ import './PriceTotal.css'
 
 function PriceTotal() {
 
-    const { state } = useCart();
+    const { cartState } = useCart();
 
-    const total = state.cart.reduce((accum, item) => {
+    const total = cartState.cart.reduce((accum, item) => {
         return accum + item.qty*item.price
     },0)
 
@@ -17,7 +17,7 @@ function PriceTotal() {
                     PRICE DETAILS
                 </div>
                 <div className="price-breakdown">
-                    <span>Price ({state.cart.length} Item)</span>
+                    <span>Price ({cartState.cart.length} Item)</span>
                     <span>Rs. {total}</span>
                 </div>
                 <div className="price-breakdown">

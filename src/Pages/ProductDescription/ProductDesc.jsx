@@ -8,9 +8,9 @@ import './ProductDesc.css'
 function ProductDesc() {
 
     const { id } = useParams();
-    const { state } = useCart();
+    const { cartState } = useCart();
 
-    const current = state.data.find(one => one.id === id);
+    const current = cartState.data.find(one => one.id === id);
 
     return (
         <div className="common-wrapper">

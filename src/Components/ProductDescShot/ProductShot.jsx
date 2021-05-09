@@ -1,21 +1,20 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router';
-import { useAuth, useCart, useToast } from '../../Context/context'
+import { useAuth, useCart } from '../../Context/context'
 import AuthModal from '../AuthModal/AuthModal';
 import './ProductShot.css'
 
 function ProductShot() {
 
-    const { state,dispatch } = useCart();
-    const { toast, setToast } = useToast();
-    const { state: { isUserLoggedIn } } = useAuth();
+    const { cartState, cartDispatch } = useCart();
+    const { authState: { isUserLoggedIn } } = useAuth();
     const { id } = useParams();
     const [authModal, setAuthModal] = useState(false)
     
-    const current = state.data.find(one => one.id === id);
+    const current = cartState.data.find(one => one.id === id);
 
     function searchWishList() {
-        if (state.wishList.filter((wish) => wish.id === current.id).length === 0) {
+        if (cartState.wishList.filter((wish) => wish.id === current.id).length === 0) {
             return false
         }return true
     }
@@ -24,17 +23,17 @@ function ProductShot() {
         e.stopPropagation()
         if (isUserLoggedIn) {
             if (searchWishList() === true) {
-                setToast({ ...toast, action: "Remov", show: true })
+                // setToast({ ...toast, action: "Remov", show: true })
                 setTimeout(() => {
-                    setToast({...toast, action : "Remov", show:false})
+                    // setToast({...toast, action : "Remov", show:false})
                 },2000)
-                dispatch({ type: "REMOVE_FROM_WISHLIST", payload: current })
+                cartDispatch({ type: "REMOVE_FROM_WISHLIST", payload: current })
             } else {
-                setToast({ ...toast, action: "Add", show: true })
+                // setToast({ ...toast, action: "Add", show: true })
                 setTimeout(() => {
-                    setToast({...toast, action : "Add", show:false})
+                    // setToast({...toast, action : "Add", show:false})
                 },2000)
-                dispatch({ type : "ADDTOWISHLIST", payload : current })
+                cartDispatch({ type : "ADDTOWISHLIST", payload : current })
             }   
         } else {
             setAuthModal(true);

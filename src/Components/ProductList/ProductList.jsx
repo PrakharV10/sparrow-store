@@ -1,13 +1,29 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ProductCard from '../ProductCard/ProductCard'
 import { useCart } from '../../Context/context'
 import './ProductList.css'
 import AuthModal from '../AuthModal/AuthModal';
+import axios from 'axios';
 
-function ProductList() {
+function ProductList({setLoading}) {
 
-    const { state } = useCart();
+    const { cartState, cartDispatch } = useCart();
     const [authModal, setAuthModal] = useState(false)
+
+    useEffect(() => {
+        serverGetProducts()
+    }, [])
+
+    async function serverGetProducts() {
+        const { data: { success, message, products } } = await axios.get(`https://Sparrow-Store.prakhar10v.repl.co/products`)
+        if (success) {
+            cartDispatch({ type: "GET_PRODUCTS_FROM_SERVER", payload: products })
+            setLoading(false)
+        } else {
+            setLoading(false)
+            alert(message)
+        }
+    }
 
     function getSorted(data, sortBy) {
         if (sortBy && sortBy === "HIGH_TO_LOW")
@@ -40,9 +56,9 @@ function ProductList() {
             })
     }
 
-    const searchedData = searchFilter(state.data, state.searchKeyWord)
-    const sortedData = getSorted(searchedData, state.sortBy)
-    const filteredData = getFiltered(sortedData, state.fastDelivery, state.outOfStock)
+    const searchedData = searchFilter(cartState.data, cartState.searchKeyWord)
+    const sortedData = getSorted(searchedData, cartState.sortBy)
+    const filteredData = getFiltered(sortedData, cartState.fastDelivery, cartState.outOfStock)
 
     return (
         <div className="product-list">
@@ -50,7 +66,7 @@ function ProductList() {
                 {
                     filteredData.slice(0, 12).map((product) => {
                         return (
-                            <div key={product.id}>
+                            <div key={product._id}>
                                 <ProductCard
                                     setAuthModal = {setAuthModal}
                                     product={product}

@@ -3,11 +3,12 @@ import './Login.css'
 import Pagination from '../../Components/Pagination/Pagination'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { useAuth } from '../../Context/context'
+import { useAuth, useCart } from '../../Context/context'
 
 function Login() {
 
-    const { state: { isUserLoggedIn }, dispatch } = useAuth();
+    const { authState: { isUserLoggedIn }, authDispatch } = useAuth();
+    const { cartDispatch } = useCart();
     const navigate = useNavigate();
     const { state } = useLocation();
 
@@ -26,11 +27,12 @@ function Login() {
 
     async function serverAuth() {
         try {
-            let { data: { success, userId, message } } = await axios.post('https://Sparrow-Store.prakhar10v.repl.co/login', localInput)
+            let { data: { success, user, message } } = await axios.post('https://Sparrow-Store.prakhar10v.repl.co/login', localInput)
             if (success) {
                 setErrorMessage(message)
                 setLoading(false)
-                dispatch({type : "SAVE_LOGIN_DETAILS", payload : userId})
+                authDispatch({ type: "SAVE_LOGIN_SIGNUP_DETAILS", payload: user })
+                cartDispatch({ type: "SAVE_USER_ON_LOGIN", payload: user })
             } else {
                 setErrorMessage(message)
                 setLoading(false);
