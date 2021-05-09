@@ -11,6 +11,10 @@
     height: max-content;
 }
 
+.desc-loader{
+    min-height: 80vh;
+}
+
 @media screen and (max-width : 1024px) {
     .product-desc{
         width: 100%;

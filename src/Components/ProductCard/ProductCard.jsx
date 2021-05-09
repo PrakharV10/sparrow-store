@@ -3,55 +3,23 @@ import { useNavigate } from 'react-router';
 import { useAuth, useCart } from '../../Context/context'
 import './ProductCard.css'
 import notifyToast from '../Toast/notifyToast';
-import axios from 'axios';
+import { searchWishList, serverAddToWishlist, serverRemoveFromWishlist } from '../../utils/wishlist.util';
 
 function ProductCard({ product, setAuthModal }) {
 
     const navigate = useNavigate();
     const { cartState, cartDispatch } = useCart();
     const { authState: { isUserLoggedIn, currentUserId } } = useAuth();
-
-    function searchWishList() {
-        if (cartState.wishList.find((wish) => wish === product._id)) {
-            return true
-        }return false
-    }
-
-    async function serverAddToWishlist() {
-        const { data : {success, wishlist, message} } = await axios.post(`https://Sparrow-Store.prakhar10v.repl.co/wishlist/${currentUserId}`, {
-            productId: product._id
-        })
-        if (success === true) {
-            notifyToast("ADDED TO WISHLIST")
-            cartDispatch({ type : "ADD_TO_WISHLIST", payload : wishlist})
-        } else {
-            notifyToast(message)
-        }
-    }
-
-    async function serverRemoveFromWishlist() {
-        const { data : {success, wishlist, message} } = await axios.delete(`https://Sparrow-Store.prakhar10v.repl.co/wishlist/${currentUserId}`, {
-            data: {
-                productId: product._id
-            }
-        })
-        if (success === true) {
-            notifyToast("REMOVED FROM WISHLIST")
-            cartDispatch({ type : "REMOVE_FROM_WISHLIST", payload : wishlist})
-        } else {
-            notifyToast(message)
-        }
-    }
     
     function wishListToggle(e) {
         e.stopPropagation()
         if (isUserLoggedIn) {
-            if (searchWishList() === true) {
+            if (searchWishList(cartState, product) === true) {
                 notifyToast("REMOVING FROM WISHLIST")
-                serverRemoveFromWishlist()
+                serverRemoveFromWishlist(currentUserId, cartDispatch, product)
             } else {
                 notifyToast("ADDING TO WISHLIST")
-                serverAddToWishlist()                
+                serverAddToWishlist(currentUserId, cartDispatch, product)                
             }   
         } else {
             setAuthModal(true)
@@ -59,7 +27,7 @@ function ProductCard({ product, setAuthModal }) {
     }
 
     function cardClickHandle() {
-        navigate(`/products/${product.id}`)
+        navigate(`/products/${product._id}`)
     }
 
 
@@ -72,7 +40,7 @@ function ProductCard({ product, setAuthModal }) {
                 <img src="https://rukminim1.flixcart.com/image/416/416/kn22m4w0/mobile/9/k/s/galaxy-f12-sm-f127glbiins-samsung-original-imagftmhhhvghq7w.jpeg?q=70" alt="cards-pic" />
             </div>
             <button onClick={(e) => wishListToggle(e)} className="wishlist-ico">
-                {searchWishList() === true
+                {searchWishList(cartState, product) === true
                     ?
                     <svg width="1em" height="1em" viewBox="0 0 16 16"><g ><path fillRule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15C-7.534 4.736 3.562-3.248 8 1.314z"></path></g></svg>
                     :

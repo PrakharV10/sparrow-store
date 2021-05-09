@@ -22,7 +22,7 @@ export function cartReducer(state, {type,payload}) {
         case REMOVE_FROM_WISHLIST:
             return { ...state, wishList: payload }
         case ADD_TO_CART:
-            return { ...state, wishList: state.wishList.filter(wish => wish.id !== payload.id), cart: [...state.cart, { ...payload, qty: 1 }] }
+            return { ...state, cart: payload }
         case INCREASE_CART_ITEM_QUANTITY:
             return { ...state, cart: state.cart.map(item => item.id === payload.id ? { ...item, qty: item.qty + 1 } : item) }
         case DECREASE_CART_ITEM_QUANTITY:

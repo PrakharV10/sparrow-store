@@ -1,55 +1,52 @@
 import React from 'react'
-import { useNavigate, useParams } from 'react-router';
-import { useCart } from '../../Context/context'
+import { useNavigate } from 'react-router';
+import { useAuth, useCart } from '../../Context/context'
+import { searchCart, serverAddToCart } from '../../utils/cart.util';
+import notifyToast from '../Toast/notifyToast';
 
 import './ProductDetails.css'
 
-function ProductDetails() {
+function ProductDetails({product}) {
 
     const { cartState, cartDispatch } = useCart();
-    const { id } = useParams();
+    const { authState: { currentUserId } } = useAuth();
     const navigate = useNavigate();
-    const current = cartState.data.find(one => one.id === id)
-
-    function searchCart() {
-        if (cartState.cart.filter(item => item.id === current.id).length === 0)
-            return false
-        return true
-    }
 
     function cartButtonHandler() {
-        if (searchCart() === false)
-            cartDispatch({ type: "ADD_TO_CART", payload: current })
-        else
+        if (searchCart(cartState, product) === false) {
+            serverAddToCart(currentUserId, cartDispatch, product)
+            notifyToast("ADDING TO CART")
+        } else {
             navigate('/cart')
+        }
     }
 
     return (
         <div className="product-details">
             <div className="product-name">
-                {current.name}
+                {product.name}
             </div>
             <div className="product-rating">
-                {current.ratings} reviews
+                {product.ratings} reviews
             </div>
             <div className="product-price">
-                ${current.price}
+                ${product.price}
             </div>
             <div className="product-brand">
-                Brand : <span className="gray-text">{current.brand}</span> 
+                Brand : <span className="gray-text">{product.brand}</span> 
             </div>
             <div className="stock">
-                Availability : <span className="gray-text">{current.inStock === true ? `In Stock` : "Out of Stock"}</span>
+                Availability : <span className="gray-text">{product.inStock === true ? `In Stock` : "Out of Stock"}</span>
             </div>
             <div className="product-text">
-                Description : <div className="gray-text">{current.desc}</div>
+                Description : <div className="gray-text">{product.desc}</div>
             </div>
             {
-                current.inStock === true ?
+                product.inStock === true ?
                     <button
                         onClick = {cartButtonHandler}
                         className="btn btn-black">
-                        {searchCart() === false ? `ADD TO CART` : `GO TO CART`}
+                        {searchCart(cartState, product) === false ? `ADD TO CART` : `GO TO CART`}
                     </button>
                     :
                     <button className="btn btn-disabled">ADD TO CART</button>
