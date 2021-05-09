@@ -43,7 +43,7 @@ function App() {
     cartDispatch({ type: "SAVE_USER_ON_LOGIN", payload: currentUser.data.user[0] })
   }
 
-  // console.log(cartState)
+  console.log(cartState)
 
   return (
     <div className="App">

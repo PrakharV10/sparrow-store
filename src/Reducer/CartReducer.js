@@ -9,7 +9,7 @@ const TOGGLE_STOCK = "TOGGLE_STOCK";
 const TOGGLE_DELIVERY = "TOGGLE_DELIVERY";
 const SEARCH_FILTER = "SEARCH_FILTER";
 const DECREASE_CART_ITEM_QUANTITY = "DECREASE_CART_ITEM_QUANTITY";
-const INCREASE_CART_ITEM_QUANTITY = "INCREASE_CART_ITEM_QUANTITY";
+const CHANGE_CART_ITEM_QUANTITY = "CHANGE_CART_ITEM_QUANTITY";
 
 export function cartReducer(state, {type,payload}) {
     switch (type) {
@@ -23,12 +23,10 @@ export function cartReducer(state, {type,payload}) {
             return { ...state, wishList: payload }
         case ADD_TO_CART:
             return { ...state, cart: payload }
-        case INCREASE_CART_ITEM_QUANTITY:
-            return { ...state, cart: state.cart.map(item => item.id === payload.id ? { ...item, qty: item.qty + 1 } : item) }
-        case DECREASE_CART_ITEM_QUANTITY:
-            return {...state, cart : state.cart.map(item => item.id === payload.id ? {...item, qty : item.qty-1} : item)}
+        case CHANGE_CART_ITEM_QUANTITY:
+            return { ...state, cart: payload }
         case REMOVE_FROM_CART:
-            return {...state, cart: state.cart.filter(item => item.id !== payload.id)}
+            return {...state, cart : payload }
         case SORT:
             return { ...state, sortBy: payload }
         case TOGGLE_STOCK:

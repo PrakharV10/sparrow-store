@@ -26,10 +26,19 @@ export async function serverRemoveFromWishlist(currentUserId, cartDispatch, prod
         }
     })
     if (success === true) {
-        notifyToast("REMOVED FROM WISHLIST")
         cartDispatch({ type : "REMOVE_FROM_WISHLIST", payload : wishlist})
     } else {
         notifyToast(message)
+    }
+}
+
+export async function getPopulatedWishlist(currentUserId, setLoading) {
+    const { data: { success, wishlist, message } } = await axios.get(`https://Sparrow-Store.prakhar10v.repl.co/wishlist/${currentUserId}`)
+    if (success) {
+        setLoading(false)
+        return wishlist
+    } else {
+        alert(message)
     }
 }
 

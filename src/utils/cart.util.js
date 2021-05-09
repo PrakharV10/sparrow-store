@@ -18,3 +18,39 @@ export async function serverAddToCart(currentUserId, cartDispatch, product) {
         notifyToast(message)
     }
 }
+
+export async function getPopulatedCart(currentUserId, setLoading) {
+    const { data: { success, cart, message } } = await axios.get(`https://Sparrow-Store.prakhar10v.repl.co/cart/${currentUserId}`)
+    if (success) {
+        setLoading(false)
+        return cart
+    } else {
+        alert(message)
+    }
+}
+
+export async function updateCartItemQuantity(currentUserId, cartDispatch, product, action) {
+    notifyToast("UPDATING QUANTITY")
+    const { data: { success, message, cart } } = await axios.put(`https://Sparrow-Store.prakhar10v.repl.co/cart/${currentUserId}`, {
+        productId: product._id,
+        action : action
+    })
+    if (success) {
+        cartDispatch({type : "CHANGE_CART_ITEM_QUANTITY", payload : cart})
+    } else {
+        alert(message)
+    }
+}
+
+export async function deleteCartItem(currentUserId, cartDispatch, product) {
+    const { data: { success, message, cart } } = await axios.delete(`https://Sparrow-Store.prakhar10v.repl.co/cart/${currentUserId}`, {
+        data: {
+            productId : product._id
+        }
+    })
+    if (success) {
+        cartDispatch({type : "REMOVE_FROM_CART", payload : cart})
+    } else {
+        alert(message)
+    }
+}

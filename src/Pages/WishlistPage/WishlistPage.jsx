@@ -1,30 +1,47 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import EmptyWish from '../../Components/EmptyWish/EmptyWish';
 import Pagination from '../../Components/Pagination/Pagination';
 import WishCard from '../../Components/WishCard/WishCard';
-import { useCart } from '../../Context/context'
+import { useAuth } from '../../Context/context'
+import { getPopulatedWishlist } from '../../utils/wishlist.util.jsx';
+import { useLoading, ThreeDots } from '@agney/react-loading';
 import './wishlistPage.css'
 
 function WishlistPage() {
 
-    const { cartState } = useCart();
+    const { authState: { currentUserId } } = useAuth();
+    const [loading, setLoading] = useState(true);
+    const [wishlistItems, setWishlistItems] = useState([]);
+
+    useEffect(() => {
+        getPopulatedWishlist(currentUserId, setLoading)
+            .then(response => {
+                setWishlistItems(response)
+            })
+    }, [])
+
+    const { containerProps, indicatorEl } = useLoading({
+        loading: loading,
+        indicator: <ThreeDots width="50" />
+    });
 
     return (
         <div className="common-wrapper">
             <Pagination />
-            <div className="wishlist-page">
-                {cartState.wishList.length !== 0 &&
+            {loading && <section className='product-loader desc-loader' {...containerProps}>{indicatorEl}</section>}
+            {!loading && <div className="wishlist-page">
+                {wishlistItems.length !== 0 &&
                     <>
                         <div className="head">
-                        Your Wishlist
+                            Your Wishlist
                         </div>
                         <div className="wishlist">
                             <div className="wish-grid">
                                 {
-                                    cartState.wishList.map(wish => {
+                                    wishlistItems.map(wish => {
                                         return (
-                                            <div key={wish.id}>
-                                                <WishCard wish={wish} />
+                                            <div key={wish._id}>
+                                                <WishCard wish={wish} wishlistItems={wishlistItems} setWishlistItems={setWishlistItems} />
                                             </div>
                                         )
                                     })
@@ -33,8 +50,8 @@ function WishlistPage() {
                         </div>
                     </>
                 }
-                {cartState.wishList.length === 0 && <EmptyWish />}
-            </div>
+                {wishlistItems.length === 0 && <EmptyWish />}
+            </div>}
         </div>
     )
 }

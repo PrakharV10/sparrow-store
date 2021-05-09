@@ -1,20 +1,25 @@
 import React from 'react'
 import { useNavigate } from 'react-router';
-import { useCart} from '../../Context/context'
+import { useAuth, useCart} from '../../Context/context'
+import { serverRemoveFromWishlist } from '../../utils/wishlist.util';
+import notifyToast from '../Toast/notifyToast';
 import './WishCard.css'
 
-function WishCard({ wish }) {
+function WishCard({ wish , setWishlistItems, wishlistItems }) {
     
-    const { dispatch } = useCart();
+    const { cartDispatch } = useCart();
+    const { authState: { currentUserId } } = useAuth();
     const navigate = useNavigate();
 
     function cardClickHandle() {
-        navigate(`/products/${wish.id}`)
+        navigate(`/products/${wish._id}`)
     }
 
-    function handleDeleteWish(e) {
+    async function handleDeleteWish(e) {
         e.stopPropagation();
-        dispatch({type : "REMOVE_FROM_WISHLIST", payload : wish})
+        notifyToast('REMOVING FROM WISHLIST')
+        await serverRemoveFromWishlist(currentUserId, cartDispatch, wish)
+        setWishlistItems(wishlistItems.filter((one) => one._id !== wish._id))
     }
 
     return (
