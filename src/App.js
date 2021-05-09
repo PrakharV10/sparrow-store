@@ -57,7 +57,7 @@ function App() {
             <Route path="/products" element = {<ProductPage />} />
             <PrivateRoute path="/wishlist" element={<WishlistPage />} />
             <Route path="/products/:id" element={<ProductDesc />} />
-            <Route path="/cart" element={<CartPage />} />
+            <PrivateRoute path="/cart" element={<CartPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
           </Routes>
