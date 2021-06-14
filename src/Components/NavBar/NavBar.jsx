@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth, useCart } from '../../Context';
 import { NavSideBar, SearchBar } from '..';
 import './NavBar.css';
 
 function NavBar() {
-	const { cartState } = useCart();
+	const { cartState, cartDispatch } = useCart();
 	const [showMenu, setShowMenu] = useState(false);
 	const [showSearch, setShowSearch] = useState(false);
+	const navigate = useNavigate();
 	const {
 		authState: { isUserLoggedIn },
+		authDispatch,
 	} = useAuth();
+
+	function logOutHandler() {
+		authDispatch({ type: 'LOG_OUT_HANDLER' });
+		cartDispatch({ type: 'LOG_OUT_HANDLER' });
+		navigate('/');
+	}
 
 	return (
 		<nav className="nav-bar">
@@ -87,21 +95,6 @@ function NavBar() {
 
 					<SearchBar showSearch={showSearch} setShowSearch={setShowSearch} />
 
-					{isUserLoggedIn && (
-						<Link to="/account">
-							<span className="badge">
-								<svg width="1em" height="1em" viewBox="0 0 24 24">
-									<path
-										d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z"
-										stroke="currentColor"
-										fill="transparent"
-										strokeWidth="1.7px"
-									></path>
-								</svg>
-							</span>
-						</Link>
-					)}
-
 					<Link to="/wishlist">
 						<span className="badge">
 							<svg viewBox="0 0 256 256">
@@ -129,6 +122,12 @@ function NavBar() {
 							)}
 						</span>
 					</Link>
+
+					{isUserLoggedIn && (
+						<span onClick={logOutHandler} className="btn-text">
+							LOGOUT
+						</span>
+					)}
 				</div>
 			</div>
 			<NavSideBar setShowMenu={setShowMenu} showMenu={showMenu} />

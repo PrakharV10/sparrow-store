@@ -2,7 +2,7 @@ const LOGIN_BY_LOCAL_STORAGE = 'LOGIN_BY_LOCAL_STORAGE';
 const SAVE_USER_DETAILS_FROM_SERVER = 'SAVE_USER_DETAILS_FROM_SERVER';
 const SAVE_LOGIN_DETAILS = 'SAVE_LOGIN_DETAILS';
 const SAVE_SIGNUP_DETAILS = 'SAVE_SIGNUP_DETAILS';
-const CHECK_LOGIN_ON_STARTUP = 'CHECK_LOGIN_ON_STARTUP';
+const LOG_OUT_HANDLER = 'LOG_OUT_HANDLER';
 
 export function authReducer(state, { type, payload }) {
 	switch (type) {
@@ -48,13 +48,13 @@ export function authReducer(state, { type, payload }) {
 				email: payload.user.email,
 			};
 
-		case CHECK_LOGIN_ON_STARTUP:
+		case LOG_OUT_HANDLER:
+			localStorage.removeItem('Login');
 			return {
-				...state,
-				isUserLoggedIn: true,
-				username: payload.username,
-				email: payload.email,
-				password: payload.password,
+				isUserLoggedIn: false,
+				authToken: '',
+				username: '',
+				email: '',
 			};
 
 		default:

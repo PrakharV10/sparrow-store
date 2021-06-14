@@ -25,26 +25,28 @@ function SideBar() {
 
 					<div className="box-range">$0 - ${slider}</div>
 				</div>
-				{/* <div className="checkbox">
-                    <label htmlFor="radio-1">
-                        <input
-                            onChange={() => dispatch({ type: "SORT", payload: "HIGH_TO_LOW" })}
-                            checked = {state.sortBy === "HIGH_TO_LOW"}
-                            id="radio-1"
-                            name="radio"
-                            type="radio" />
-                        High to Low
-                    </label>
-                    <label htmlFor="radio-2">
-                        <input
-                            onChange={() => dispatch({ type: "SORT", payload: "LOW_TO_HIGH" })}
-                            checked = {state.sortBy === "LOW_TO_HIGH"}
-                            id="radio-2"
-                            name="radio"
-                            type="radio" />
-                        Low to High 
-                    </label>
-                </div> */}
+				<div className="checkbox">
+					<label htmlFor="radio-1">
+						<input
+							onChange={() => cartDispatch({ type: 'SORT', payload: 'HIGH_TO_LOW' })}
+							checked={cartState.sortBy === 'HIGH_TO_LOW'}
+							id="radio-1"
+							name="radio"
+							type="radio"
+						/>
+						High to Low
+					</label>
+					<label htmlFor="radio-2">
+						<input
+							onChange={() => cartDispatch({ type: 'SORT', payload: 'LOW_TO_HIGH' })}
+							checked={cartState.sortBy === 'LOW_TO_HIGH'}
+							id="radio-2"
+							name="radio"
+							type="radio"
+						/>
+						Low to High
+					</label>
+				</div>
 				<div className="one-category">
 					<div className="check-title">AVAILABILITY</div>
 					<div className="checkbox">
@@ -74,24 +76,24 @@ function SideBar() {
 				<div className="one-category">
 					<div className="check-title">BRANDS</div>
 					<div className="checkbox">
-						<label htmlFor="checkbox-1">
-							<input id="checkbox-1" name="checkbox" type="checkbox" />
-							ACER
-						</label>
-						<label htmlFor="checkbox-2">
-							<input id="checkbox-2" name="checkbox" type="checkbox" />
-							APPLE
-						</label>
 						<label htmlFor="checkbox-3">
 							<input id="checkbox-3" name="checkbox" type="checkbox" />
-							DELL
+							ACER
 						</label>
 						<label htmlFor="checkbox-4">
 							<input id="checkbox-4" name="checkbox" type="checkbox" />
-							WACOM
+							APPLE
 						</label>
 						<label htmlFor="checkbox-5">
 							<input id="checkbox-5" name="checkbox" type="checkbox" />
+							DELL
+						</label>
+						<label htmlFor="checkbox-6">
+							<input id="checkbox-6" name="checkbox" type="checkbox" />
+							WACOM
+						</label>
+						<label htmlFor="checkbox-7">
+							<input id="checkbox-7" name="checkbox" type="checkbox" />
 							HUION
 						</label>
 					</div>

@@ -36,7 +36,7 @@ function ProductCard({ product, setAuthModal }) {
 	}
 
 	return (
-		<div className={product.inStock ? 'cards' : 'cards no-stock'} onClick={cardClickHandle}>
+		<div className="cards" onClick={cardClickHandle}>
 			<div className="cards-img">
 				<img
 					src="https://rukminim1.flixcart.com/image/416/416/kn22m4w0/mobile/9/k/s/galaxy-f12-sm-f127glbiins-samsung-original-imagftmhhhvghq7w.jpeg?q=70"
@@ -62,7 +62,10 @@ function ProductCard({ product, setAuthModal }) {
 				)}
 			</button>
 
-			<div className="brand">{product.brand}</div>
+			<div className="brand">
+				{product.brand}
+				<span className={product.inStock ? 'in-stock' : 'no-stock'}>Out of Stock</span>
+			</div>
 			<div className="item-name">{product.name}</div>
 			<div className="item-price">
 				<span className="now">Rs. {product.price}</span>

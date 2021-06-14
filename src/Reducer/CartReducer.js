@@ -7,6 +7,7 @@ const SORT = 'SORT';
 const TOGGLE_STOCK = 'TOGGLE_STOCK';
 const TOGGLE_DELIVERY = 'TOGGLE_DELIVERY';
 const SEARCH_FILTER = 'SEARCH_FILTER';
+const LOG_OUT_HANDLER = 'LOG_OUT_HANDLER';
 
 export function cartReducer(state, { type, payload }) {
 	switch (type) {
@@ -31,6 +32,8 @@ export function cartReducer(state, { type, payload }) {
 			return { ...state, fastDelivery: !state.fastDelivery };
 		case SEARCH_FILTER:
 			return { ...state, searchKeyWord: payload };
+		case LOG_OUT_HANDLER:
+			return { ...state, wishList: [], cart: [] };
 		default:
 			return state;
 	}
