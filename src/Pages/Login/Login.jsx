@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './Login.css';
 import { BreadCrumb } from '../../Components';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { useAuth } from '../../Context';
 import { serverCallHandler } from '../../utils/serverCallHandler';
 import { SERVER_URL } from '../../utils/api';
@@ -41,6 +40,8 @@ function Login() {
 				type: 'SAVE_LOGIN_DETAILS',
 				payload: { user: response.data, token: response.token },
 			});
+		} else {
+			setErrorMessage(response.message);
 		}
 	}
 

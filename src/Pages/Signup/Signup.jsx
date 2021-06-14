@@ -1,15 +1,16 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { BreadCrumb } from '../../Components';
 import { useAuth } from '../../Context';
+import { SERVER_URL } from '../../utils/api';
+import { serverCallHandler } from '../../utils/serverCallHandler';
 
 function Signup() {
 	const {
 		authState: { isUserLoggedIn },
 		authDispatch,
 	} = useAuth();
-	let navigate = useNavigate();
+	const navigate = useNavigate();
 
 	const [errorMessage, setErrorMessage] = useState('');
 	const [loading, setLoading] = useState(false);
@@ -19,23 +20,22 @@ function Signup() {
 		password: '',
 	});
 
-	async function serverAuthCheck() {
-		try {
-			let {
-				data: { success, user, message },
-			} = await axios.post('https://Sparrow-Store.prakhar10v.repl.co/signup', localInput);
-			if (success) {
-				setLoading(false);
-				setErrorMessage('');
-				authDispatch({ type: 'SAVE_LOGIN_SIGNUP_DETAILS', payload: user });
-				navigate('/');
-			} else {
-				setErrorMessage(message);
-				setLoading(false);
-			}
-		} catch (err) {
-			console.log(err);
-			setErrorMessage('Server Error. Try Again');
+	async function serverCheckAndSave() {
+		const { response } = await serverCallHandler('POST', `${SERVER_URL}/signup`, {
+			username: localInput.username,
+			password: localInput.password,
+			email: localInput.email,
+		});
+		if (response.success) {
+			setErrorMessage('');
+			setLoading(false);
+			authDispatch({
+				type: 'SAVE_SIGNUP_DETAILS',
+				payload: { user: response.data, token: response.token },
+			});
+			navigate('/explore');
+		} else {
+			setErrorMessage(response.message);
 			setLoading(false);
 		}
 	}
@@ -53,7 +53,7 @@ function Signup() {
 	function signupHandleSubmit(e) {
 		e.preventDefault();
 		setLoading(true);
-		serverAuthCheck();
+		serverCheckAndSave();
 	}
 
 	useEffect(() => {
