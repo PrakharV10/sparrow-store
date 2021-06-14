@@ -5,4 +5,3 @@ export { default as ProductDesc } from './ProductDescription/ProductDesc';
 export { default as Signup } from './Signup/Signup';
 export { default as WishlistPage } from './WishlistPage/WishlistPage';
 export { default as ProductPage } from './ProductScreen/ProductPage';
-export { default as Account } from './Account/Account';
