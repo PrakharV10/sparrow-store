@@ -1,22 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useCart } from '../../Context';
+import { useAuth, useCart } from '../../Context';
 import { searchCart, serverAddToCart } from '../../utils/cart.util';
+import AuthModal from '../AuthModal/AuthModal';
 import notifyToast from '../Toast/notifyToast';
 
 import './ProductDetails.css';
 
 function ProductDetails({ product }) {
 	const { cartState, cartDispatch } = useCart();
+	const { authState } = useAuth();
 	const navigate = useNavigate();
+	const [authModal, setAuthModal] = useState(false);
 
 	function cartButtonHandler() {
-		if (searchCart(cartState, product) === false) {
-			serverAddToCart(cartDispatch, product);
-			console.log(product);
-			notifyToast('ADDING TO CART');
+		if (authState.isUserLoggedIn) {
+			if (searchCart(cartState, product) === false) {
+				serverAddToCart(cartDispatch, product);
+				console.log(product);
+				notifyToast('ADDING TO CART');
+			} else {
+				navigate('/cart');
+			}
 		} else {
-			navigate('/cart');
+			setAuthModal(true);
 		}
 	}
 
@@ -42,8 +49,10 @@ function ProductDetails({ product }) {
 					{searchCart(cartState, product) === false ? `ADD TO CART` : `GO TO CART`}
 				</button>
 			) : (
-				<button className="btn btn-disabled">ADD TO CART</button>
+				<button className="btn btn-disabled">OUT OF STOCK</button>
 			)}
+
+			{authModal && <AuthModal authModal={authModal} setAuthModal={setAuthModal} />}
 		</div>
 	);
 }

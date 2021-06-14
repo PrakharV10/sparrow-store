@@ -23,7 +23,7 @@ export function CartProvider({ children }) {
 			} else {
 				console.log(response.message);
 			}
-			if (authState.isUserLoggedIn) setIsLoading(false);
+			if (!authState.isUserLoggedIn) setIsLoading(false);
 		})();
 	}, []);
 
