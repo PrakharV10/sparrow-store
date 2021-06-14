@@ -1,17 +1,16 @@
-import React from 'react'
-import Carousel from '../../Components/Carousel/Carousel'
-import OverlayCard from '../../Components/OverlayCard/OverlayCard'
-import './LandingPage.css'
+import React from 'react';
+import { Carousel } from '../../Components';
+import './LandingPage.css';
 
 function LandingPage() {
-    return (
-        <div className="landing-page">
-            <Carousel />
-            {/* <main>
+	return (
+		<div className="landing-page">
+			<Carousel />
+			{/* <main>
                 <OverlayCard />
             </main> */}
-        </div>
-    )
+		</div>
+	);
 }
 
-export default LandingPage
+export default LandingPage;

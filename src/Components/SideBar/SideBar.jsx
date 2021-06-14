@@ -1,29 +1,31 @@
-import React, { useState } from 'react'
-import { useCart } from '../../Context/context'
-import './SideBar.css'
+import React, { useState } from 'react';
+import { useCart } from '../../Context';
+import './SideBar.css';
 
 function SideBar() {
+	const { cartState, cartDispatch } = useCart();
+	const [slider, setSlider] = useState(100);
 
-    const { cartState, cartDispatch } = useCart();
-    const [slider, setSlider] = useState(100)
+	return (
+		<aside className="side-bar">
+			<div className="check-list">
+				<div className="one-category">
+					<div className="list-title">PRICE</div>
 
-    return (
-        <aside className="side-bar">
-            <div className="check-list">
-                <div className="one-category">
-                    <div className="list-title">
-                        PRICE
-                    </div>
+					<div className="slider-container">
+						<input
+							className="slider"
+							onChange={(e) => setSlider(e.target.value)}
+							type="range"
+							min="100"
+							max="10000"
+							value={slider}
+						/>
+					</div>
 
-                    <div className="slider-container">
-                        <input className="slider" onChange = {e => setSlider(e.target.value)} type="range" min="100" max="10000" value={slider} />
-                    </div>
-
-                    <div className="box-range">
-                        $0 - ${slider}
-                    </div>
-                </div>
-                {/* <div className="checkbox">
+					<div className="box-range">$0 - ${slider}</div>
+				</div>
+				{/* <div className="checkbox">
                     <label htmlFor="radio-1">
                         <input
                             onChange={() => dispatch({ type: "SORT", payload: "HIGH_TO_LOW" })}
@@ -43,77 +45,60 @@ function SideBar() {
                         Low to High 
                     </label>
                 </div> */}
-                <div className="one-category">
-                    <div className="check-title">
-                        AVAILABILITY
-                    </div>
-                    <div className="checkbox">
-                        <label htmlFor="checkbox-1">
-                            <input
-                                onChange={() => cartDispatch({ type: "TOGGLE_STOCK" })}
-                                checked = {cartState.outOfStock === true}
-                                id="checkbox-1"
-                                name="checkbox"
-                                type="checkbox" />
-                            Include Out of Stock
-                        </label>
-                        <label htmlFor="checkbox-2">
-                            <input
-                                onChange={() => cartDispatch({ type: "TOGGLE_DELIVERY" })}
-                                checked = {cartState.fastDelivery === true}
-                                id="checkbox-2"
-                                name="checkbox"
-                                type="checkbox" />
-                            Fast Delivery Only 
-                        </label>
-                    </div>
-                </div>
+				<div className="one-category">
+					<div className="check-title">AVAILABILITY</div>
+					<div className="checkbox">
+						<label htmlFor="checkbox-1">
+							<input
+								onChange={() => cartDispatch({ type: 'TOGGLE_STOCK' })}
+								checked={cartState.outOfStock === true}
+								id="checkbox-1"
+								name="checkbox"
+								type="checkbox"
+							/>
+							Include Out of Stock
+						</label>
+						<label htmlFor="checkbox-2">
+							<input
+								onChange={() => cartDispatch({ type: 'TOGGLE_DELIVERY' })}
+								checked={cartState.fastDelivery === true}
+								id="checkbox-2"
+								name="checkbox"
+								type="checkbox"
+							/>
+							Fast Delivery Only
+						</label>
+					</div>
+				</div>
 
-                <div className="one-category">
-                    <div className="check-title">
-                        BRANDS
-                    </div>
-                    <div className="checkbox">
-                        <label htmlFor="checkbox-1">
-                            <input
-                                id="checkbox-1"
-                                name="checkbox"
-                                type="checkbox" />
-                            ACER
-                        </label>
-                        <label htmlFor="checkbox-2">
-                            <input
-                                id="checkbox-2"
-                                name="checkbox"
-                                type="checkbox" />
-                            APPLE
-                        </label>
-                        <label htmlFor="checkbox-3">
-                            <input
-                                id="checkbox-3"
-                                name="checkbox"
-                                type="checkbox" />
-                            DELL
-                        </label>
-                        <label htmlFor="checkbox-4">
-                            <input
-                                id="checkbox-4"
-                                name="checkbox"
-                                type="checkbox" />
-                            WACOM
-                        </label>
-                        <label htmlFor="checkbox-5">
-                            <input
-                                id="checkbox-5"
-                                name="checkbox"
-                                type="checkbox" />
-                            HUION
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </aside>
-    )
+				<div className="one-category">
+					<div className="check-title">BRANDS</div>
+					<div className="checkbox">
+						<label htmlFor="checkbox-1">
+							<input id="checkbox-1" name="checkbox" type="checkbox" />
+							ACER
+						</label>
+						<label htmlFor="checkbox-2">
+							<input id="checkbox-2" name="checkbox" type="checkbox" />
+							APPLE
+						</label>
+						<label htmlFor="checkbox-3">
+							<input id="checkbox-3" name="checkbox" type="checkbox" />
+							DELL
+						</label>
+						<label htmlFor="checkbox-4">
+							<input id="checkbox-4" name="checkbox" type="checkbox" />
+							WACOM
+						</label>
+						<label htmlFor="checkbox-5">
+							<input id="checkbox-5" name="checkbox" type="checkbox" />
+							HUION
+						</label>
+					</div>
+				</div>
+			</div>
+		</aside>
+	);
 }
 
-export default SideBar
+export default SideBar;

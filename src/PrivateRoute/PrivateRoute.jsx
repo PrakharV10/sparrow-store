@@ -1,22 +1,17 @@
-import React from 'react'
+import React from 'react';
 import { Navigate, Route } from 'react-router';
-import { useAuth } from '../Context/context'
+import { useAuth } from '../Context';
 
 function PrivateRoute({ path, ...props }) {
-    
-    const { authState: { isUserLoggedIn } } = useAuth();
+	const {
+		authState: { isUserLoggedIn },
+	} = useAuth();
 
-    return (
-        isUserLoggedIn
-            ?
-            <Route path={path} {...props} />
-            :
-            <Navigate
-                state={{ from: path }}
-                replace
-                to = "/login"
-            />
-    )
+	return isUserLoggedIn ? (
+		<Route path={path} {...props} />
+	) : (
+		<Navigate state={{ from: path }} replace to="/login" />
+	);
 }
 
-export default PrivateRoute
+export default PrivateRoute;

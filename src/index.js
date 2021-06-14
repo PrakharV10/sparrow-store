@@ -2,21 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { LoaderProvider, Puff } from '@agney/react-loading';
-import { CartProvider } from './Context/context';
-import { BrowserRouter } from 'react-router-dom';
-import { AuthProvider } from './Context/context';
+import { CartProvider, AuthProvider, IsLoadingProvider } from './Context';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter >
-      <AuthProvider>
-        <CartProvider>
-          <LoaderProvider indicator={<Puff width="100" />}>
-            <App />
-          </LoaderProvider>
-        </CartProvider>
-      </AuthProvider>
-    </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById('root')
+	<React.StrictMode>
+		<Router>
+			<IsLoadingProvider>
+				<AuthProvider>
+					<CartProvider>
+						<LoaderProvider indicator={<Puff width="100" />}>
+							<App />
+						</LoaderProvider>
+					</CartProvider>
+				</AuthProvider>
+			</IsLoadingProvider>
+		</Router>
+	</React.StrictMode>,
+	document.getElementById('root')
 );
