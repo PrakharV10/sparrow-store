@@ -13,18 +13,18 @@ function ProductCard({ product, setAuthModal }) {
 	const navigate = useNavigate();
 	const { cartState, cartDispatch } = useCart();
 	const {
-		authState: { isUserLoggedIn, currentUserId },
+		authState: { isUserLoggedIn },
 	} = useAuth();
 
 	function wishListToggle(e) {
 		e.stopPropagation();
 		if (isUserLoggedIn) {
-			if (searchWishList(cartState, product) === true) {
+			if (searchWishList(cartState, product._id) === true) {
 				notifyToast('REMOVING FROM WISHLIST');
-				serverRemoveFromWishlist(currentUserId, cartDispatch, product);
+				serverRemoveFromWishlist(cartDispatch, product._id);
 			} else {
 				notifyToast('ADDING TO WISHLIST');
-				serverAddToWishlist(currentUserId, cartDispatch, product);
+				serverAddToWishlist(cartDispatch, product._id);
 			}
 		} else {
 			setAuthModal(true);

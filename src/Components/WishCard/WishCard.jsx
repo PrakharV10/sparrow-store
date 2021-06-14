@@ -1,26 +1,24 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
-import { useAuth, useCart } from '../../Context';
+import { useCart } from '../../Context';
 import { serverRemoveFromWishlist } from '../../utils/wishlist.util';
 import notifyToast from '../Toast/notifyToast';
 import './WishCard.css';
 
-function WishCard({ wish, setWishlistItems, wishlistItems }) {
-	const { cartDispatch } = useCart();
-	const {
-		authState: { currentUserId },
-	} = useAuth();
+function WishCard({ wish }) {
+	const { cartState, cartDispatch } = useCart();
 	const navigate = useNavigate();
 
+	const currentWish = cartState.data.find((one) => one._id === wish);
+
 	function cardClickHandle() {
-		navigate(`/products/${wish._id}`);
+		navigate(`/products/${wish}`);
 	}
 
 	async function handleDeleteWish(e) {
 		e.stopPropagation();
 		notifyToast('REMOVING FROM WISHLIST');
-		await serverRemoveFromWishlist(currentUserId, cartDispatch, wish);
-		setWishlistItems(wishlistItems.filter((one) => one._id !== wish._id));
+		await serverRemoveFromWishlist(cartDispatch, wish);
 	}
 
 	return (
@@ -40,9 +38,9 @@ function WishCard({ wish, setWishlistItems, wishlistItems }) {
 				</svg>
 			</button>
 			<div className="brand">Apple</div>
-			<div className="item-name">{wish.name}</div>
+			<div className="item-name">{currentWish.name}</div>
 			<div className="item-price">
-				<span className="now">Rs. {wish.price}</span>
+				<span className="now">Rs. {currentWish.price}</span>
 			</div>
 		</div>
 	);

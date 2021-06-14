@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { BreadCrumb } from '../../Components';
 import { useAuth } from '../../Context';
 import { SERVER_URL } from '../../utils/api';
@@ -11,6 +11,7 @@ function Signup() {
 		authDispatch,
 	} = useAuth();
 	const navigate = useNavigate();
+	const { state } = useLocation();
 
 	const [errorMessage, setErrorMessage] = useState('');
 	const [loading, setLoading] = useState(false);
@@ -33,7 +34,6 @@ function Signup() {
 				type: 'SAVE_SIGNUP_DETAILS',
 				payload: { user: response.data, token: response.token },
 			});
-			navigate('/explore');
 		} else {
 			setErrorMessage(response.message);
 			setLoading(false);
@@ -57,8 +57,8 @@ function Signup() {
 	}
 
 	useEffect(() => {
-		isUserLoggedIn && navigate('/');
-	});
+		isUserLoggedIn && navigate(state?.from ? state.from : '/');
+	}, [isUserLoggedIn]);
 
 	return (
 		<div className="login-page common-wrapper">

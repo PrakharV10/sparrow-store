@@ -12,7 +12,7 @@ import './ProductShot.css';
 function ProductShot({ product }) {
 	const { cartState, cartDispatch } = useCart();
 	const {
-		authState: { isUserLoggedIn, currentUserId },
+		authState: { isUserLoggedIn },
 	} = useAuth();
 	const [authModal, setAuthModal] = useState(false);
 
@@ -21,10 +21,10 @@ function ProductShot({ product }) {
 		if (isUserLoggedIn) {
 			if (searchWishList(cartState, product) === true) {
 				notifyToast('REMOVING FROM WISHLIST');
-				serverRemoveFromWishlist(currentUserId, cartDispatch, product);
+				serverRemoveFromWishlist(cartDispatch, product);
 			} else {
 				notifyToast('ADDING TO WISHLIST');
-				serverAddToWishlist(currentUserId, cartDispatch, product);
+				serverAddToWishlist(cartDispatch, product._id);
 			}
 		} else {
 			setAuthModal(true);

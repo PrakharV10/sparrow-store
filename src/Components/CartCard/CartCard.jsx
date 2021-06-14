@@ -1,44 +1,28 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
-import { useAuth, useCart } from '../../Context';
+import { useCart } from '../../Context';
 import { deleteCartItem, updateCartItemQuantity } from '../../utils/cart.util';
 import './CartCard.css';
 
-function CartCard({ cartItems, setCartItems, quantity, product }) {
-	const { cartDispatch } = useCart();
-	const {
-		authState: { currentUserId },
-	} = useAuth();
+function CartCard({ quantity, product }) {
+	const { cartState, cartDispatch } = useCart();
 	const navigate = useNavigate();
+
+	const currentProduct = cartState.data.find((one) => one._id === product);
 
 	async function quantityHandler(e, action) {
 		e.stopPropagation();
 		if (quantity > 1 && action === 'SUB') {
-			await updateCartItemQuantity(currentUserId, cartDispatch, product, action);
-			setCartItems(
-				cartItems.map((one) => {
-					if (one.product._id === product._id)
-						return { ...one, quantity: one.quantity - 1 };
-					else return one;
-				})
-			);
+			await updateCartItemQuantity(cartDispatch, product, action);
 		} else if (action === 'ADD') {
-			await updateCartItemQuantity(currentUserId, cartDispatch, product, action);
-			setCartItems(
-				cartItems.map((one) => {
-					if (one.product._id === product._id)
-						return { ...one, quantity: one.quantity + 1 };
-					else return one;
-				})
-			);
+			await updateCartItemQuantity(cartDispatch, product, action);
 		} else {
-			setCartItems(cartItems.filter((one) => one.product._id !== product._id));
-			deleteCartItem(currentUserId, cartDispatch, product);
+			deleteCartItem(cartDispatch, product);
 		}
 	}
 
 	function cardClickHandle() {
-		navigate(`/products/${product._id}`);
+		navigate(`/products/${product}`);
 	}
 
 	return (
@@ -51,8 +35,8 @@ function CartCard({ cartItems, setCartItems, quantity, product }) {
 			</div>
 			<div className="card-details">
 				<div className="brand">Apple</div>
-				<div className="name">{product.name}</div>
-				<div className="description">{product.desc}</div>
+				<div className="name">{currentProduct.name}</div>
+				<div className="description">{currentProduct.desc}</div>
 				<div className="quantity-group">
 					<button onClick={(e) => quantityHandler(e, 'SUB')}>
 						{quantity === 1 ? (
@@ -77,7 +61,7 @@ function CartCard({ cartItems, setCartItems, quantity, product }) {
 						</svg>
 					</button>
 				</div>
-				<div className="price">Rs. {product.price}</div>
+				<div className="price">Rs. {currentProduct.price}</div>
 			</div>
 		</div>
 	);

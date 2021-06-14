@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SideBar, BreadCrumb, ProductList } from '../../Components';
 import { useLoading, ThreeDots } from '@agney/react-loading';
 import './ProductPage.css';
+import { useIsLoading } from '../../Context';
 
 function ProductPage() {
-	const [loading, setLoading] = useState(true);
+	const { isLoading } = useIsLoading();
 
 	const { containerProps, indicatorEl } = useLoading({
-		loading: loading,
+		loading: isLoading,
 		indicator: <ThreeDots width="50" />,
 	});
 
@@ -18,12 +19,12 @@ function ProductPage() {
 				<SideBar />
 				<div className="product-container">
 					<div className="head">Products</div>
-					{loading && (
+					{isLoading && (
 						<section className="product-loader" {...containerProps}>
 							{indicatorEl}
 						</section>
 					)}
-					<ProductList setLoading={setLoading} />
+					<ProductList />
 				</div>
 			</div>
 		</div>

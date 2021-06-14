@@ -9,13 +9,13 @@ ReactDOM.render(
 	<React.StrictMode>
 		<Router>
 			<IsLoadingProvider>
-				<AuthProvider>
-					<CartProvider>
-						<LoaderProvider indicator={<Puff width="100" />}>
+				<LoaderProvider indicator={<Puff width="100" />}>
+					<AuthProvider>
+						<CartProvider>
 							<App />
-						</LoaderProvider>
-					</CartProvider>
-				</AuthProvider>
+						</CartProvider>
+					</AuthProvider>
+				</LoaderProvider>
 			</IsLoadingProvider>
 		</Router>
 	</React.StrictMode>,

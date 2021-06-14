@@ -1,50 +1,38 @@
 import { ThreeDots, useLoading } from '@agney/react-loading';
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ProductShot, ProductDetails } from '../../Components';
+import { useCart, useIsLoading } from '../../Context';
 import './ProductDesc.css';
 
 function ProductDesc() {
-	const [current, setCurrent] = useState([]);
-	const { id } = useParams();
-	const [loading, setLoading] = useState(true);
+	const { productId } = useParams();
+	const { isLoading } = useIsLoading();
+	const { cartState } = useCart();
+
+	const current = cartState.data.find((item) => item._id === productId);
 
 	const { containerProps, indicatorEl } = useLoading({
-		loading: loading,
+		loading: isLoading,
 		indicator: <ThreeDots width="50" />,
 	});
 
-	async function serverFetchItem() {
-		const {
-			data: { success, product },
-		} = await axios.get(`https://Sparrow-Store.prakhar10v.repl.co/products/${id}`);
-		if (success) {
-			setCurrent(product);
-			setLoading(false);
-		} else {
-			alert('Some Error Occured');
-		}
-	}
-
-	useEffect(() => {
-		serverFetchItem();
-	}, []);
-
 	return (
 		<div className="common-wrapper">
-			<div className="pagination">
-				<Link to="/">Home</Link>
-				{' | '}
-				{current.name}
-			</div>
+			{!isLoading && (
+				<div className="breadcrumb">
+					<Link to="/">Home</Link>
+					{' | '}
+					{current.name}
+				</div>
+			)}
 
-			{loading && (
+			{isLoading && (
 				<section className="product-loader desc-loader" {...containerProps}>
 					{indicatorEl}
 				</section>
 			)}
-			{!loading && (
+			{!isLoading && (
 				<div className="product-desc">
 					<div className="container">
 						<ProductShot product={current} />

@@ -27,7 +27,7 @@ function App() {
 					<Route path="/" element={<LandingPage />} />
 					<Route path="/products" element={<ProductPage />} />
 					<PrivateRoute path="/wishlist" element={<WishlistPage />} />
-					<Route path="/products/:id" element={<ProductDesc />} />
+					<Route path="/products/:productId" element={<ProductDesc />} />
 					<PrivateRoute path="/cart" element={<CartPage />} />
 					<Route path="/login" element={<Login />} />
 					<Route path="/signup" element={<Signup />} />

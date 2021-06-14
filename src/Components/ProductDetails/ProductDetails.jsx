@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
-import { useAuth, useCart } from '../../Context';
+import { useCart } from '../../Context';
 import { searchCart, serverAddToCart } from '../../utils/cart.util';
 import notifyToast from '../Toast/notifyToast';
 
@@ -8,14 +8,12 @@ import './ProductDetails.css';
 
 function ProductDetails({ product }) {
 	const { cartState, cartDispatch } = useCart();
-	const {
-		authState: { currentUserId },
-	} = useAuth();
 	const navigate = useNavigate();
 
 	function cartButtonHandler() {
 		if (searchCart(cartState, product) === false) {
-			serverAddToCart(currentUserId, cartDispatch, product);
+			serverAddToCart(cartDispatch, product);
+			console.log(product);
 			notifyToast('ADDING TO CART');
 		} else {
 			navigate('/cart');

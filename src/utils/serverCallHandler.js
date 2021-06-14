@@ -25,7 +25,7 @@ export async function serverCallHandler(method, route, data) {
 			}
 		case 'DELETE':
 			try {
-				const res = await axios.delete(route, data);
+				const res = await axios.delete(route, { data: data });
 				return { response: res.data, success: true };
 			} catch (err) {
 				return { response: err.message, success: false };

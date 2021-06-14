@@ -1,44 +1,33 @@
-import axios from "axios"
-import notifyToast from "../Components/Toast/notifyToast"
+import notifyToast from '../Components/Toast/notifyToast';
+import { SERVER_URL } from './api';
+import { serverCallHandler } from './serverCallHandler';
 
 export function searchWishList(cartState, product) {
-    if (cartState.wishList.find((wish) => wish === product._id)) {
-        return true
-    }return false
+	if (cartState.wishList.find((wish) => wish === product._id)) {
+		return true;
+	}
+	return false;
 }
 
-export async function serverAddToWishlist(currentUserId, cartDispatch, product) {
-    const { data : {success, wishlist, message} } = await axios.post(`https://Sparrow-Store.prakhar10v.repl.co/wishlist/${currentUserId}`, {
-        productId: product._id
-    })
-    if (success === true) {
-        notifyToast("ADDED TO WISHLIST")
-        cartDispatch({ type : "ADD_TO_WISHLIST", payload : wishlist})
-    } else {
-        notifyToast(message)
-    }
+export async function serverAddToWishlist(cartDispatch, product) {
+	const { response } = await serverCallHandler('POST', `${SERVER_URL}/wishlist`, {
+		productId: product._id,
+	});
+	if (response.success) {
+		cartDispatch({ type: 'ADD_TO_WISHLIST', payload: { product } });
+	} else {
+		notifyToast(response.message);
+	}
 }
 
-export async function serverRemoveFromWishlist(currentUserId, cartDispatch, product) {
-    const { data : {success, wishlist, message} } = await axios.delete(`https://Sparrow-Store.prakhar10v.repl.co/wishlist/${currentUserId}`, {
-        data: {
-            productId: product._id
-        }
-    })
-    if (success === true) {
-        cartDispatch({ type : "REMOVE_FROM_WISHLIST", payload : wishlist})
-    } else {
-        notifyToast(message)
-    }
+export async function serverRemoveFromWishlist(cartDispatch, product) {
+	const { response } = await serverCallHandler('DELETE', `${SERVER_URL}/wishlist`, {
+		productId: product._id,
+	});
+	console.log(response);
+	if (response.success) {
+		cartDispatch({ type: 'REMOVE_FROM_WISHLIST', payload: { product } });
+	} else {
+		notifyToast(response.message);
+	}
 }
-
-export async function getPopulatedWishlist(currentUserId, setLoading) {
-    const { data: { success, wishlist, message } } = await axios.get(`https://Sparrow-Store.prakhar10v.repl.co/wishlist/${currentUserId}`)
-    if (success) {
-        setLoading(false)
-        return wishlist
-    } else {
-        alert(message)
-    }
-}
-

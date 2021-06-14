@@ -1,61 +1,48 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { WishCard, BreadCrumb, EmptyWish } from '../../Components';
-import { useAuth } from '../../Context';
-import { getPopulatedWishlist } from '../../utils/wishlist.util.js';
+import { useCart, useIsLoading } from '../../Context';
 import { useLoading, ThreeDots } from '@agney/react-loading';
 import './wishlistPage.css';
 
 function WishlistPage() {
-	const {
-		authState: { currentUserId },
-	} = useAuth();
-	const [loading, setLoading] = useState(true);
-	const [wishlistItems, setWishlistItems] = useState([]);
+	const { isLoading } = useIsLoading();
 
-	useEffect(() => {
-		getPopulatedWishlist(currentUserId, setLoading).then((response) => {
-			setWishlistItems(response);
-		});
-	}, []);
+	const { cartState } = useCart();
 
 	const { containerProps, indicatorEl } = useLoading({
-		loading: loading,
+		loading: isLoading,
 		indicator: <ThreeDots width="50" />,
 	});
+
+	const wishlistItems = cartState.wishList;
 
 	return (
 		<div className="common-wrapper">
 			<BreadCrumb />
-			{loading && (
-				<section className="product-loader desc-loader" {...containerProps}>
-					{indicatorEl}
-				</section>
-			)}
-			{!loading && (
-				<div className="wishlist-page">
-					{wishlistItems.length !== 0 && (
-						<>
-							<div className="head">Your Wishlist</div>
-							<div className="wishlist">
-								<div className="wish-grid">
-									{wishlistItems.map((wish) => {
-										return (
-											<div key={wish._id}>
-												<WishCard
-													wish={wish}
-													wishlistItems={wishlistItems}
-													setWishlistItems={setWishlistItems}
-												/>
-											</div>
-										);
-									})}
-								</div>
+			<div className="wishlist-page">
+				<div className="head">Your Wishlist</div>
+				{isLoading && (
+					<section className="product-loader desc-loader" {...containerProps}>
+						{indicatorEl}
+					</section>
+				)}
+				{wishlistItems.length !== 0 && (
+					<div className="wishlist">
+						{!isLoading && (
+							<div className="wish-grid">
+								{wishlistItems.map((wish) => {
+									return (
+										<div key={wish}>
+											<WishCard wish={wish} />
+										</div>
+									);
+								})}
 							</div>
-						</>
-					)}
-					{wishlistItems.length === 0 && <EmptyWish />}
-				</div>
-			)}
+						)}
+					</div>
+				)}
+				{wishlistItems.length === 0 && <EmptyWish />}
+			</div>
 		</div>
 	);
 }

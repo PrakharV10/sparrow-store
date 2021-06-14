@@ -5,7 +5,6 @@ import { serverCallHandler, setupAuthHeaderForServiceCalls } from '../utils/serv
 import { useAuth } from './authContext.jsx';
 import { useIsLoading } from './isLoadingContext.jsx';
 
-// Cart, Wishlist, Products Context
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
@@ -21,12 +20,16 @@ export function CartProvider({ children }) {
 					type: 'SAVE_ALL_PRODUCTS',
 					payload: { products: response.data },
 				});
+			} else {
+				console.log(response.message);
 			}
+			if (authState.isUserLoggedIn) setIsLoading(false);
 		})();
 	}, []);
 
 	const getUserDetails = async () => {
 		const { response } = await serverCallHandler('GET', `${SERVER_URL}/user`);
+		console.log(response.data);
 		if (response.success) {
 			authDispatch({
 				type: 'SAVE_USER_DETAILS_FROM_SERVER',
@@ -36,7 +39,7 @@ export function CartProvider({ children }) {
 				},
 			});
 			cartDispatch({
-				type: 'SAVE_USER_CART_AND_WISHLIST_FROM_SERVER',
+				type: 'SAVE_USER_AND_WISHLIST_FROM_SERVER',
 				payload: {
 					cart: response.data.cart,
 					wishlist: response.data.wishlist,
@@ -46,10 +49,10 @@ export function CartProvider({ children }) {
 	};
 
 	useEffect(() => {
-		(async () => {
+		(async function () {
 			if (authState.isUserLoggedIn) {
 				await setupAuthHeaderForServiceCalls(authState.authToken);
-				await getUserDetails;
+				await getUserDetails();
 				setIsLoading(false);
 			}
 		})();

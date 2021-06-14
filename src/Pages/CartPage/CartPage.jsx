@@ -1,26 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { BreadCrumb, CartCard, PriceTotal, EmptyCart } from '../../Components';
-import { useAuth, useCart } from '../../Context';
-import { getPopulatedCart } from '../../utils/cart.util';
+import { useCart, useIsLoading } from '../../Context';
 import { useLoading, ThreeDots } from '@agney/react-loading';
 import './CartPage.css';
 
 function CartPage() {
 	const { cartState } = useCart();
-	const {
-		authState: { currentUserId },
-	} = useAuth();
-	const [loading, setLoading] = useState(true);
-	const [cartItems, setCartItems] = useState([]);
+	const { isLoading } = useIsLoading();
 
-	useEffect(() => {
-		getPopulatedCart(currentUserId, setLoading).then((response) => {
-			setCartItems(response);
-		});
-	}, []);
+	const cartItems = cartState.cart;
 
 	const { containerProps, indicatorEl } = useLoading({
-		loading: loading,
+		loading: isLoading,
 		indicator: <ThreeDots width="50" />,
 	});
 
@@ -32,19 +23,17 @@ function CartPage() {
 					<>
 						<div className="cart-container">
 							<div className="head">My Cart ({cartState.cart.length})</div>
-							{loading && (
+							{isLoading && (
 								<section className="product-loader desc-loader" {...containerProps}>
 									{indicatorEl}
 								</section>
 							)}
-							{!loading && (
+							{!isLoading && (
 								<div className="cart-list">
 									{cartItems.map((one) => {
 										return (
 											<div key={one._id}>
 												<CartCard
-													cartItems={cartItems}
-													setCartItems={setCartItems}
 													quantity={one.quantity}
 													product={one.product}
 												/>
