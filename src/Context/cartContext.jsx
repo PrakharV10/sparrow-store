@@ -23,13 +23,11 @@ export function CartProvider({ children }) {
 			} else {
 				console.log(response.message);
 			}
-			if (!authState.isUserLoggedIn) setIsLoading(false);
 		})();
 	}, []);
 
 	const getUserDetails = async () => {
 		const { response } = await serverCallHandler('GET', `${SERVER_URL}/user`);
-		console.log(response.data);
 		if (response.success) {
 			authDispatch({
 				type: 'SAVE_USER_DETAILS_FROM_SERVER',
@@ -53,10 +51,21 @@ export function CartProvider({ children }) {
 			if (authState.isUserLoggedIn) {
 				await setupAuthHeaderForServiceCalls(authState.authToken);
 				await getUserDetails();
-				setIsLoading(false);
 			}
 		})();
 	}, [authState.isUserLoggedIn]);
+
+	useEffect(() => {
+		if (authState.isUserLoggedIn) {
+			if (cartState.cart !== null && cartState.data.length !== 0) {
+				setIsLoading(false);
+			}
+		} else {
+			if (cartState.data.length !== 0) {
+				setIsLoading(false);
+			}
+		}
+	}, [authState.isUserLoggedIn, cartState.cart, cartState.data]);
 
 	return (
 		<CartContext.Provider value={{ cartState, cartDispatch }}>{children}</CartContext.Provider>

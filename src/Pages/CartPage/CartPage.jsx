@@ -19,10 +19,12 @@ function CartPage() {
 		<div className="common-wrapper">
 			<BreadCrumb />
 			<div className="cart-page">
-				{cartState.cart.length !== 0 ? (
+				{cartState.cart && cartState.cart.length !== 0 ? (
 					<>
 						<div className="cart-container">
-							<div className="head">My Cart ({cartState.cart.length})</div>
+							<div className="head">
+								My Cart ({cartState.cart ? cartState.cart.length : '0'})
+							</div>
 							{isLoading && (
 								<section className="product-loader desc-loader" {...containerProps}>
 									{indicatorEl}

@@ -21,10 +21,10 @@ function ProductCard({ product, setAuthModal }) {
 		if (isUserLoggedIn) {
 			if (searchWishList(cartState, product._id) === true) {
 				notifyToast('REMOVING FROM WISHLIST');
-				serverRemoveFromWishlist(cartDispatch, product._id);
+				serverRemoveFromWishlist(cartDispatch, product);
 			} else {
 				notifyToast('ADDING TO WISHLIST');
-				serverAddToWishlist(cartDispatch, product._id);
+				serverAddToWishlist(cartDispatch, product);
 			}
 		} else {
 			setAuthModal(true);

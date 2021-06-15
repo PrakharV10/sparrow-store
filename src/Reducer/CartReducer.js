@@ -41,7 +41,7 @@ export function cartReducer(state, { type, payload }) {
 
 export const initialCartState = {
 	data: [],
-	cart: [],
+	cart: null,
 	wishList: [],
 	sortBy: null,
 	outOfStock: false,

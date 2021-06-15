@@ -65,6 +65,6 @@ export function authReducer(state, { type, payload }) {
 export const initialAuthState = {
 	isUserLoggedIn: false,
 	authToken: '',
-	username: '',
+	username: null,
 	email: '',
 };
