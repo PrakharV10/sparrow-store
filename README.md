@@ -1,70 +1,26 @@
-# Getting Started with Create React App
+## Sparrow Store AKA Phoenix
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Introduction -
+Sparrow Store(AKA Phoenix) is an ecommerce website, MERN Stack Project, for Graphics Designers. It is a part of Sparrow Company, which specializes in different fields related to Graphics Designing.
 
-## Available Scripts
+### Features - 
+- Product Management. 
+- Cart Management
+- Wishlist Management
+- Authentication and authorization in Backend and Frontend.
+- Authentication with JSONWebToken.
+- Password hashing through Bcrypt.
+- Fully Responsive Website
 
-In the project directory, you can run:
+### Tech Stack - 
+- ReactJs, Vanilla CSS integrated with Sparrow Designs Component Library. 
+- MongoDB, Express and Node for Backend. 
+- JWT for authentication.
+- bcrypt for password hashing.
+- Repl.it for hosting server.
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Screenshots - 
+<img width="368" alt="Screenshot 2021-06-15 at 11 30 14 PM" src="https://user-images.githubusercontent.com/70899048/122101340-cc39ee00-ce31-11eb-8c0e-375735d5aed5.png">
+<img width="1440" alt="Screenshot 2021-06-15 at 11 29 41 PM" src="https://user-images.githubusercontent.com/70899048/122101350-d0660b80-ce31-11eb-96e7-86133895a8eb.png">
+<img width="1440" alt="Screenshot 2021-06-15 at 11 29 53 PM" src="https://user-images.githubusercontent.com/70899048/122101357-d2c86580-ce31-11eb-9094-16d08596d048.png">
+<img width="368" alt="Screenshot 2021-06-15 at 11 30 27 PM" src="https://user-images.githubusercontent.com/70899048/122101360-d3f99280-ce31-11eb-808e-550319b998a0.png">
