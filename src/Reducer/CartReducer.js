@@ -16,11 +16,11 @@ export function cartReducer(state, { type, payload }) {
 		case SAVE_ALL_PRODUCTS:
 			return { ...state, data: payload.products };
 		case ADD_TO_WISHLIST:
-			return { ...state, wishList: [...state.wishList, payload.product] };
+			return { ...state, wishList: [...state.wishList, payload.productId] };
 		case REMOVE_FROM_WISHLIST:
 			return {
 				...state,
-				wishList: state.wishList.filter((one) => one !== payload.product),
+				wishList: state.wishList.filter((one) => one !== payload.productId),
 			};
 		case UPDATE_CART:
 			return { ...state, cart: payload.cart };

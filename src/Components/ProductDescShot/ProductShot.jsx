@@ -19,9 +19,9 @@ function ProductShot({ product }) {
 	function wishListToggle(e) {
 		e.stopPropagation();
 		if (isUserLoggedIn) {
-			if (searchWishList(cartState, product) === true) {
+			if (searchWishList(cartState, product._id) === true) {
 				notifyToast('REMOVING FROM WISHLIST');
-				serverRemoveFromWishlist(cartDispatch, product);
+				serverRemoveFromWishlist(cartDispatch, product._id);
 			} else {
 				notifyToast('ADDING TO WISHLIST');
 				serverAddToWishlist(cartDispatch, product._id);
@@ -39,7 +39,7 @@ function ProductShot({ product }) {
 			/>
 			<button className="heart-button" onClick={(e) => wishListToggle(e)}>
 				<svg
-					className={searchWishList(cartState, product) === true ? 'heart-red' : ''}
+					className={searchWishList(cartState, product._id) === true ? 'heart-red' : ''}
 					width="1em"
 					height="1em"
 					viewBox="0 0 16 16"

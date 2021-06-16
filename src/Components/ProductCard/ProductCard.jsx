@@ -21,10 +21,10 @@ function ProductCard({ product, setAuthModal }) {
 		if (isUserLoggedIn) {
 			if (searchWishList(cartState, product._id) === true) {
 				notifyToast('REMOVING FROM WISHLIST');
-				serverRemoveFromWishlist(cartDispatch, product);
+				serverRemoveFromWishlist(cartDispatch, product._id);
 			} else {
 				notifyToast('ADDING TO WISHLIST');
-				serverAddToWishlist(cartDispatch, product);
+				serverAddToWishlist(cartDispatch, product._id);
 			}
 		} else {
 			setAuthModal(true);
@@ -44,7 +44,7 @@ function ProductCard({ product, setAuthModal }) {
 				/>
 			</div>
 			<button onClick={(e) => wishListToggle(e)} className="wishlist-ico">
-				{searchWishList(cartState, product) === true ? (
+				{searchWishList(cartState, product._id) === true ? (
 					<svg width="1em" height="1em" viewBox="0 0 16 16">
 						<g>
 							<path
