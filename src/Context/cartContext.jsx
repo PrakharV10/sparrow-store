@@ -36,11 +36,28 @@ export function CartProvider({ children }) {
 					email: response.data.email,
 				},
 			});
+		}
+	};
+
+	const getWishlistItems = async () => {
+		const { response } = await serverCallHandler('GET', `${SERVER_URL}/wishlist`);
+		if (response.success) {
 			cartDispatch({
-				type: 'SAVE_USER_AND_WISHLIST_FROM_SERVER',
+				type: 'SAVE_WISHLIST_FROM_SERVER',
 				payload: {
-					cart: response.data.cart,
-					wishlist: response.data.wishlist,
+					wishlist: response.data,
+				},
+			});
+		}
+	};
+
+	const getCartDetails = async () => {
+		const { response } = await serverCallHandler('GET', `${SERVER_URL}/cart`);
+		if (response.success) {
+			cartDispatch({
+				type: 'SAVE_CART_FROM_SERVER',
+				payload: {
+					cart: response.data,
 				},
 			});
 		}
@@ -51,6 +68,8 @@ export function CartProvider({ children }) {
 			if (authState.isUserLoggedIn) {
 				await setupAuthHeaderForServiceCalls(authState.authToken);
 				await getUserDetails();
+				await getWishlistItems();
+				await getCartDetails();
 			}
 		})();
 	}, [authState.isUserLoggedIn]);

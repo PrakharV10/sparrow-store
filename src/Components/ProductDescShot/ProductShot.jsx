@@ -19,12 +19,12 @@ function ProductShot({ product }) {
 	function wishListToggle(e) {
 		e.stopPropagation();
 		if (isUserLoggedIn) {
-			if (searchWishList(cartState, product._id) === true) {
+			if (searchWishList(cartState, product) === true) {
 				notifyToast('REMOVING FROM WISHLIST');
-				serverRemoveFromWishlist(cartDispatch, product._id);
+				serverRemoveFromWishlist(cartDispatch, product);
 			} else {
 				notifyToast('ADDING TO WISHLIST');
-				serverAddToWishlist(cartDispatch, product._id);
+				serverAddToWishlist(cartDispatch, product);
 			}
 		} else {
 			setAuthModal(true);
@@ -32,22 +32,22 @@ function ProductShot({ product }) {
 	}
 
 	return (
-		<div className="product-shot">
+		<div className='product-shot'>
 			<img
-				src="https://rukminim1.flixcart.com/image/416/416/kfzq8i80/mobile/y/j/f/samsung-galaxy-f41-sm-f415fzbdins-original-imafwbnpvwszuysz.jpeg?q=70"
-				alt="shot"
+				src='https://rukminim1.flixcart.com/image/416/416/kfzq8i80/mobile/y/j/f/samsung-galaxy-f41-sm-f415fzbdins-original-imafwbnpvwszuysz.jpeg?q=70'
+				alt='shot'
 			/>
-			<button className="heart-button" onClick={(e) => wishListToggle(e)}>
+			<button className='heart-button' onClick={(e) => wishListToggle(e)}>
 				<svg
-					className={searchWishList(cartState, product._id) === true ? 'heart-red' : ''}
-					width="1em"
-					height="1em"
-					viewBox="0 0 16 16"
+					className={searchWishList(cartState, product) === true ? 'heart-red' : ''}
+					width='1em'
+					height='1em'
+					viewBox='0 0 16 16'
 				>
 					<g>
 						<path
-							fillRule="evenodd"
-							d="M8 1.314C12.438-3.248 23.534 4.735 8 15C-7.534 4.736 3.562-3.248 8 1.314z"
+							fillRule='evenodd'
+							d='M8 1.314C12.438-3.248 23.534 4.735 8 15C-7.534 4.736 3.562-3.248 8 1.314z'
 						></path>
 					</g>
 				</svg>

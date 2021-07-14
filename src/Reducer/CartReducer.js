@@ -1,8 +1,11 @@
-const SAVE_USER_AND_WISHLIST_FROM_SERVER = 'SAVE_USER_AND_WISHLIST_FROM_SERVER';
+const SAVE_CART_FROM_SERVER = 'SAVE_CART_FROM_SERVER';
+const SAVE_WISHLIST_FROM_SERVER = 'SAVE_WISHLIST_FROM_SERVER';
 const SAVE_ALL_PRODUCTS = 'SAVE_ALL_PRODUCTS';
 const ADD_TO_WISHLIST = 'ADD_TO_WISHLIST';
 const REMOVE_FROM_WISHLIST = 'REMOVE_FROM_WISHLIST';
-const UPDATE_CART = 'UPDATE_CART';
+const ADD_TO_CART = 'ADD_TO_CART';
+const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+const UPDATE_CART_ITEM_QUANTITY = 'UPDATE_CART_ITEM_QUANTITY';
 const SORT = 'SORT';
 const TOGGLE_STOCK = 'TOGGLE_STOCK';
 const TOGGLE_DELIVERY = 'TOGGLE_DELIVERY';
@@ -11,19 +14,38 @@ const LOG_OUT_HANDLER = 'LOG_OUT_HANDLER';
 
 export function cartReducer(state, { type, payload }) {
 	switch (type) {
-		case SAVE_USER_AND_WISHLIST_FROM_SERVER:
-			return { ...state, wishList: payload.wishlist, cart: payload.cart };
+		case SAVE_CART_FROM_SERVER:
+			return { ...state, cart: payload.cart };
+		case SAVE_WISHLIST_FROM_SERVER:
+			return { ...state, wishList: payload.wishlist };
 		case SAVE_ALL_PRODUCTS:
 			return { ...state, data: payload.products };
 		case ADD_TO_WISHLIST:
-			return { ...state, wishList: [...state.wishList, payload.productId] };
+			return { ...state, wishList: [...state.wishList, payload.product] };
 		case REMOVE_FROM_WISHLIST:
 			return {
 				...state,
-				wishList: state.wishList.filter((one) => one !== payload.productId),
+				wishList: state.wishList.filter((one) => one._id !== payload.product._id),
 			};
-		case UPDATE_CART:
-			return { ...state, cart: payload.cart };
+		case ADD_TO_CART:
+			return { ...state, cart: [...state.cart, { quantity: 1, product: payload.cartItem }] };
+		case REMOVE_FROM_CART:
+			return {
+				...state,
+				cart: state.cart.filter((item) => item.product._id !== payload.cartItem._id),
+			};
+		case UPDATE_CART_ITEM_QUANTITY:
+			return {
+				...state,
+				cart: state.cart.map((item) => {
+					if (item.product._id === payload.cartItem._id) {
+						if (payload.action === 'ADD')
+							return { ...item, quantity: item.quantity + 1 };
+						return { ...item, quantity: item.quantity - 1 };
+					}
+					return item;
+				}),
+			};
 		case SORT:
 			return { ...state, sortBy: payload };
 		case TOGGLE_STOCK:

@@ -12,32 +12,32 @@ function CartPage() {
 
 	const { containerProps, indicatorEl } = useLoading({
 		loading: isLoading,
-		indicator: <ThreeDots width="50" />,
+		indicator: <ThreeDots width='50' />,
 	});
 
 	return (
-		<div className="common-wrapper">
+		<div className='common-wrapper'>
 			<BreadCrumb />
-			<div className="cart-page">
+			<div className='cart-page'>
 				{cartState.cart && cartState.cart.length !== 0 ? (
 					<>
-						<div className="cart-container">
-							<div className="head">
+						<div className='cart-container'>
+							<div className='head'>
 								My Cart ({cartState.cart ? cartState.cart.length : '0'})
 							</div>
 							{isLoading && (
-								<section className="product-loader desc-loader" {...containerProps}>
+								<section className='product-loader desc-loader' {...containerProps}>
 									{indicatorEl}
 								</section>
 							)}
 							{!isLoading && (
-								<div className="cart-list">
+								<div className='cart-list'>
 									{cartItems.map((one) => {
 										return (
 											<div key={one._id}>
 												<CartCard
 													quantity={one.quantity}
-													product={one.product}
+													currentProduct={one.product}
 												/>
 											</div>
 										);
