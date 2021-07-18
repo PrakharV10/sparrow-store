@@ -38,10 +38,7 @@ function ProductCard({ product, setAuthModal }) {
 	return (
 		<div className='cards' onClick={cardClickHandle}>
 			<div className='cards-img'>
-				<img
-					src='https://rukminim1.flixcart.com/image/416/416/kn22m4w0/mobile/9/k/s/galaxy-f12-sm-f127glbiins-samsung-original-imagftmhhhvghq7w.jpeg?q=70'
-					alt='cards-pic'
-				/>
+				<img src={product.image} alt='cards-pic' />
 			</div>
 			<button onClick={(e) => wishListToggle(e)} className='wishlist-ico'>
 				{searchWishList(cartState, product) === true ? (

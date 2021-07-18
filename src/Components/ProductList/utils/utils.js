@@ -32,3 +32,12 @@ export function getFiltered(sortedData, fastDelivery, outOfStock) {
 			return item;
 		});
 }
+
+export function getFilteredBrands(products, brandName) {
+	if (brandName.length === 0) return products;
+
+	return products.filter((product) => {
+		if (brandName.find((one) => one === product.brand)) return true;
+		return false;
+	});
+}

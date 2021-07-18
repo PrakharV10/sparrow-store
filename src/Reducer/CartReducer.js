@@ -8,6 +8,8 @@ const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 const UPDATE_CART_ITEM_QUANTITY = 'UPDATE_CART_ITEM_QUANTITY';
 const INITIALIZE_EMPTY_CART_AND_WISHLIST = 'INITIALIZE_EMPTY_CART_AND_WISHLIST';
 const SORT = 'SORT';
+const ADD_BRAND = 'ADD_BRAND';
+const REMOVE_BRAND = 'REMOVE_BRAND';
 const TOGGLE_STOCK = 'TOGGLE_STOCK';
 const TOGGLE_DELIVERY = 'TOGGLE_DELIVERY';
 const SEARCH_FILTER = 'SEARCH_FILTER';
@@ -53,6 +55,10 @@ export function cartReducer(state, { type, payload }) {
 					return item;
 				}),
 			};
+		case ADD_BRAND:
+			return { ...state, brandName: [...state.brandName, payload] };
+		case REMOVE_BRAND:
+			return { ...state, brandName: state.brandName.filter((brand) => brand !== payload) };
 		case SORT:
 			return { ...state, sortBy: payload };
 		case TOGGLE_STOCK:
@@ -76,4 +82,5 @@ export const initialCartState = {
 	outOfStock: false,
 	fastDelivery: false,
 	searchKeyWord: '',
+	brandName: [],
 };

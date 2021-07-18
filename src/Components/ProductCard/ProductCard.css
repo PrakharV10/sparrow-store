@@ -20,7 +20,10 @@
 	overflow: hidden;
 	text-align: center;
 	align-content: center;
+	object-fit: fill;
+	width: auto;
 	height: 250px;
+	max-width: 200px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
