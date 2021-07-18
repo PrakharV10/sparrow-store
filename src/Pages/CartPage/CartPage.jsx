@@ -34,7 +34,7 @@ function CartPage() {
 								<div className='cart-list'>
 									{cartItems.map((one) => {
 										return (
-											<div key={one._id}>
+											<div key={one.product._id}>
 												<CartCard
 													quantity={one.quantity}
 													currentProduct={one.product}

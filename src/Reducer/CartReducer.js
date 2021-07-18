@@ -6,6 +6,7 @@ const REMOVE_FROM_WISHLIST = 'REMOVE_FROM_WISHLIST';
 const ADD_TO_CART = 'ADD_TO_CART';
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 const UPDATE_CART_ITEM_QUANTITY = 'UPDATE_CART_ITEM_QUANTITY';
+const INITIALIZE_EMPTY_CART_AND_WISHLIST = 'INITIALIZE_EMPTY_CART_AND_WISHLIST';
 const SORT = 'SORT';
 const TOGGLE_STOCK = 'TOGGLE_STOCK';
 const TOGGLE_DELIVERY = 'TOGGLE_DELIVERY';
@@ -14,6 +15,12 @@ const LOG_OUT_HANDLER = 'LOG_OUT_HANDLER';
 
 export function cartReducer(state, { type, payload }) {
 	switch (type) {
+		case INITIALIZE_EMPTY_CART_AND_WISHLIST:
+			return {
+				...state,
+				cart: [],
+				wishList: [],
+			};
 		case SAVE_CART_FROM_SERVER:
 			return { ...state, cart: payload.cart };
 		case SAVE_WISHLIST_FROM_SERVER:

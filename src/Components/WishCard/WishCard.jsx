@@ -9,8 +9,6 @@ function WishCard({ wish }) {
 	const { cartDispatch } = useCart();
 	const navigate = useNavigate();
 
-	console.log(wish);
-
 	function cardClickHandle() {
 		navigate(`/products/${wish._id}`);
 	}

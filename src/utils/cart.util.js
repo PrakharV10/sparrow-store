@@ -3,7 +3,8 @@ import { SERVER_URL } from './api';
 import { serverCallHandler } from './serverCallHandler';
 
 export function searchCart(cartState, product) {
-	if (cartState && cartState.cart.find((item) => item.product._id === product._id)) return true;
+	if (cartState !== null && cartState.cart.find((item) => item.product._id === product._id))
+		return true;
 	return false;
 }
 

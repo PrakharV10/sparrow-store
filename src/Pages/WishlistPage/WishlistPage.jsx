@@ -11,28 +11,28 @@ function WishlistPage() {
 
 	const { containerProps, indicatorEl } = useLoading({
 		loading: isLoading,
-		indicator: <ThreeDots width="50" />,
+		indicator: <ThreeDots width='50' />,
 	});
 
 	const wishlistItems = cartState.wishList;
 
 	return (
-		<div className="common-wrapper">
+		<div className='common-wrapper'>
 			<BreadCrumb />
-			<div className="wishlist-page">
-				<div className="head">Your Wishlist</div>
+			<div className='wishlist-page'>
+				<div className='head'>Your Wishlist</div>
 				{isLoading && (
-					<section className="product-loader desc-loader" {...containerProps}>
+					<section className='product-loader desc-loader' {...containerProps}>
 						{indicatorEl}
 					</section>
 				)}
 				{wishlistItems.length !== 0 && (
-					<div className="wishlist">
+					<div className='wishlist'>
 						{!isLoading && (
-							<div className="wish-grid">
+							<div className='wish-grid'>
 								{wishlistItems.map((wish) => {
 									return (
-										<div key={wish}>
+										<div key={wish._id}>
 											<WishCard wish={wish} />
 										</div>
 									);

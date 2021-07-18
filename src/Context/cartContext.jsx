@@ -70,21 +70,19 @@ export function CartProvider({ children }) {
 				await getUserDetails();
 				await getWishlistItems();
 				await getCartDetails();
+			} else {
+				cartDispatch({
+					type: 'INITIALIZE_EMPTY_CART_AND_WISHLIST',
+				});
 			}
 		})();
 	}, [authState.isUserLoggedIn]);
 
 	useEffect(() => {
-		if (authState.isUserLoggedIn) {
-			if (cartState.cart !== null && cartState.data.length !== 0) {
-				setIsLoading(false);
-			}
-		} else {
-			if (cartState.data.length !== 0) {
-				setIsLoading(false);
-			}
+		if (cartState.cart !== null && cartState.data.length !== 0) {
+			setIsLoading(false);
 		}
-	}, [authState.isUserLoggedIn, cartState.cart, cartState.data]);
+	}, [authState.isUserLoggedIn, cartState.cart, cartState.data, setIsLoading]);
 
 	return (
 		<CartContext.Provider value={{ cartState, cartDispatch }}>{children}</CartContext.Provider>
