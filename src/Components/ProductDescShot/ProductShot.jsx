@@ -33,10 +33,7 @@ function ProductShot({ product }) {
 
 	return (
 		<div className='product-shot'>
-			<img
-				src='https://rukminim1.flixcart.com/image/416/416/kfzq8i80/mobile/y/j/f/samsung-galaxy-f41-sm-f415fzbdins-original-imafwbnpvwszuysz.jpeg?q=70'
-				alt='shot'
-			/>
+			<img src={product.image} alt='shot' />
 			<button className='heart-button' onClick={(e) => wishListToggle(e)}>
 				<svg
 					className={searchWishList(cartState, product) === true ? 'heart-red' : ''}

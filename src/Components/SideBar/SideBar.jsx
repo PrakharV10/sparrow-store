@@ -7,7 +7,6 @@ function SideBar() {
 	const [brands, setBrands] = useState([]);
 
 	function getBrands(products) {
-		console.log(products);
 		const brands = products.reduce((acc, curr) => {
 			acc.push(curr.brand);
 			return acc;
@@ -85,7 +84,7 @@ function SideBar() {
 					<div className='checkbox'>
 						{brands.map((brand, index) => {
 							return (
-								<label htmlFor={`checkbox-b-${index}`}>
+								<label key={`${brand}-${index}`} htmlFor={`checkbox-b-${index}`}>
 									<input
 										checked={
 											cartState.brandName.find((one) => one === brand)

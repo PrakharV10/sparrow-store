@@ -26,10 +26,7 @@ function CartCard({ quantity, currentProduct }) {
 	return (
 		<div className='cart-card'>
 			<div onClick={cardClickHandle} className='card-image'>
-				<img
-					src='https://rukminim1.flixcart.com/image/416/416/kfzq8i80/mobile/y/j/f/samsung-galaxy-f41-sm-f415fzbdins-original-imafwbnpvwszuysz.jpeg?q=70'
-					alt=''
-				/>
+				<img src={currentProduct.image} alt='' />
 			</div>
 			<div className='card-details'>
 				<div className='brand'>Apple</div>
