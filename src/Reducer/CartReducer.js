@@ -14,6 +14,7 @@ const TOGGLE_STOCK = 'TOGGLE_STOCK';
 const TOGGLE_DELIVERY = 'TOGGLE_DELIVERY';
 const SEARCH_FILTER = 'SEARCH_FILTER';
 const LOG_OUT_HANDLER = 'LOG_OUT_HANDLER';
+const CLEAR_SEARCH = 'CLEAR_SEARCH';
 
 export function cartReducer(state, { type, payload }) {
 	switch (type) {
@@ -54,6 +55,11 @@ export function cartReducer(state, { type, payload }) {
 					}
 					return item;
 				}),
+			};
+		case CLEAR_SEARCH:
+			return {
+				...state,
+				searchKeyWord: '',
 			};
 		case ADD_BRAND:
 			return { ...state, brandName: [...state.brandName, payload] };
