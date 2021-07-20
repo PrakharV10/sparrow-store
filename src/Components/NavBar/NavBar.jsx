@@ -66,15 +66,6 @@ function NavBar() {
 				<li>
 					<NavLink to='/products'>PRODUCTS</NavLink>
 				</li>
-				<li>
-					<NavLink to='/products'>SKETCHBOOKS</NavLink>
-				</li>
-				<li>
-					<NavLink to='/products'>TABLETS</NavLink>
-				</li>
-				<li>
-					<NavLink to='/products'>LAPTOPS</NavLink>
-				</li>
 			</ul>
 
 			<div className='right-nav-links'>
