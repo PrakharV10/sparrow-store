@@ -1,0 +1,22 @@
+.empty-wish{
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+.empty-wish svg{
+    width: 100px;
+    height: 100px;
+    fill : var(--gray-800);
+    opacity: .7;
+}
+
+.main-text{
+    font-size: 1rem;
+    color : var(--gray-800);
+    letter-spacing: .2rem;
+}

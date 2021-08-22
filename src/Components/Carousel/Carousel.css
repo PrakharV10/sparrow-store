@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.carousel{
+    position: relative;
+    transition: all .7s ease-in-out;
+}
+
+.image-wrapper{
+    overflow: hidden;
+    max-height: 630px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay{
+    background : var(--white-100);
+}
+
+.image-wrapper img{
+    transition: all 1s ease-in-out;
+    opacity: .7;
+    transform: scale(1);
+}
+
+.overlay-text{
+    font-family: 'Poppins', sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    color: var(--black-900);
+    width: 100%;
+}
+
+.carousel .overlay-text .up-title{
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.carousel .overlay-text .title{
+    font-size:2rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    width: 30vw;
+    margin: auto;
+}
+
+.overlay-text .btn-black{
+    padding: 1rem;
+    width: 200px;
+}
+
+@media screen and (max-width : 768px){
+    .carousel .overlay-text .up-title{
+        font-size: .8rem;
+    }
+
+    .carousel .overlay-text .title{
+        width: 40vw;
+        font-size: 1.3rem;
+    }
+
+    .overlay-text .btn-black{
+        width: max-content;
+        font-size: .8rem;
+        padding: .8rem;
+        margin: .5rem 0;
+    }
+}
+
+@media screen and (max-width : 426px){
+    .carousel .overlay-text .title{
+        width: 60vw;
+        font-size: 1rem;
+    }
+
+    .overlay-text .btn-black{
+        font-size: .7rem;
+        padding: .7rem;
+    }
+}

@@ -1,0 +1,83 @@
+.login-modal-bg {
+	height: 70vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Poppins', sans-serif;
+}
+
+.login-modal {
+	height: max-content;
+	min-height: 390px;
+	width: 380px;
+	max-width: 98%;
+	background-color: var(--white-100);
+	border-radius: 3px;
+	padding-bottom: 1rem;
+}
+
+.login-head {
+	text-align: center;
+	font-size: 1.4rem;
+	font-weight: 400;
+	padding: 1rem;
+	color: var(--black-900);
+	letter-spacing: 3px;
+}
+
+.login-subhead {
+	text-align: center;
+	font-size: 0.9rem;
+	font-weight: 300;
+}
+
+.login-fields {
+	padding: 1.5rem 0rem 0;
+}
+
+.login-fields input {
+	padding: 0.7rem 1rem;
+	width: 100%;
+	outline: none;
+	border: 1.5px solid var(--gray-300);
+	transition: border 0.3s ease;
+	margin-bottom: 1rem;
+}
+
+.login-fields input:focus {
+	border: 1.5px solid var(--black-900);
+}
+
+.action-button {
+	padding: 0 0rem;
+}
+
+.sub-text {
+	cursor: pointer;
+	margin: 0.5rem 0 1rem;
+	text-align: center;
+	font-size: 0.8rem;
+	color: var(--gray-900);
+}
+
+.sub-text span {
+	font-weight: 500;
+	color: var(--black-900);
+}
+
+.alert.error {
+	background-color: #fde4e4;
+	color: red;
+	border-radius: 2px;
+	font-weight: 500;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin: 1.5rem 2rem 0;
+	width: initial;
+}
+
+.alert svg {
+	width: 20px;
+	height: 20px;
+}

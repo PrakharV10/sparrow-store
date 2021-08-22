@@ -1,0 +1,120 @@
+.nav-bar {
+	font-family: 'Poppins', sans-serif;
+	background-color: var(--white-100);
+	color: var(--black-900);
+	padding: 1rem 4rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	z-index: 5;
+	border-bottom: 1px solid #eeeeee;
+	box-shadow: 0 0 4px rgb(0 0 0 / 40%);
+	height: 60px;
+}
+
+.left-nav {
+	font-size: 1.3rem;
+	font-weight: 900;
+	display: flex;
+	align-items: center;
+}
+
+.left-nav svg {
+	display: none;
+	height: 25px;
+	width: 25px;
+	margin-right: 1rem;
+	transition: color 0.3s ease;
+	margin-bottom: 2px;
+}
+
+.mid-nav-links {
+	display: flex;
+}
+
+.mid-nav-links li {
+	list-style: none;
+	padding: 0 1.5rem 0 0;
+	font-weight: 400;
+	font-size: 0.8rem;
+	transition: all 0.2s ease-in-out;
+	cursor: pointer;
+	letter-spacing: 1px;
+}
+
+.mid-nav-links li:hover {
+	color: var(--pink-800);
+}
+
+.right-nav-links > div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 5px;
+}
+
+.right-nav-links svg {
+	margin-left: 1.5rem;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.right-nav-links svg:hover {
+	color: var(--pink-800);
+}
+
+.right-nav-links .btn-text {
+	font-size: 0.9rem;
+	margin: 0 0 0.2rem 1.5rem;
+	font-weight: 500;
+	cursor: pointer;
+	color: var(--gray-900);
+}
+
+.btn-text:hover {
+	color: var(--gray-800);
+}
+
+.nav-icon {
+	position: relative;
+}
+
+.btn-white {
+	margin: 0;
+	background-color: var(--white-100);
+	color: var(--gray-800);
+	padding: 0.5rem 0.7rem;
+}
+
+.badge .number {
+	top: -12px;
+	right: -8px;
+	transform: scale(0.7);
+	background-color: var(--black-900);
+	color: var(--white-100);
+	font-size: 0.8rem;
+	font-weight: 400;
+}
+
+@media screen and (max-width: 1024px) {
+	.nav-bar {
+		padding: 1rem 1rem;
+	}
+
+	.left-nav svg {
+		display: block;
+	}
+
+	.mid-nav-links {
+		display: none;
+	}
+
+	.right-nav-links svg {
+		margin-left: 1.2rem;
+	}
+}

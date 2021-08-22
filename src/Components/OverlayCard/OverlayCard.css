@@ -1,0 +1,51 @@
+.card-series{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.overlay-card{
+    width: 400px;
+    max-width: 90%;
+    border-radius: 2px;
+    max-height: 250px;
+    overflow: hidden;
+    position: relative;
+    margin: 0rem auto 2rem;
+}
+
+.overlay-card .rsp-img{
+    object-fit: cover;
+    object-position: center;
+    border-radius: 2px;
+    opacity: .4;
+    cursor: pointer;
+}
+
+.overlay-text{
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    transition: all .3s ease;
+}
+
+.overlay-card:hover > .overlay-text{
+    color: var(--yellow-500);
+}
+
+@media screen and (max-width : 768px){
+    .overlay-card{
+        max-height: 200px;
+    }
+
+    .overlay-text{
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width : 426px){
+    .overlay-card{
+        max-height: 150px;
+    }
+}

@@ -1,0 +1,99 @@
+.cards {
+	padding: 1rem 0;
+	position: relative;
+	cursor: pointer;
+	background-color: var(--white-100);
+	font-family: 'Poppins', sans-serif;
+}
+
+.in-stock {
+	display: none;
+}
+
+.no-stock {
+	color: red;
+	font-weight: 500;
+	font-size: 0.8rem;
+}
+
+.cards-img {
+	overflow: hidden;
+	text-align: center;
+	align-content: center;
+	object-fit: fill;
+	width: auto;
+	height: 250px;
+	max-width: 200px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--off-white);
+}
+
+.cards-img img {
+	object-fit: cover;
+	object-position: center;
+	width: auto;
+	height: 90%;
+	transition: all 0.7s ease-in-out;
+}
+
+.brand {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.5rem 0 0 0.5rem;
+	font-size: 0.9rem;
+	font-weight: 500;
+	text-transform: capitalize;
+}
+
+.cards .wishlist-ico {
+	cursor: pointer;
+	position: absolute;
+	top: 20px;
+	right: 5px;
+	border: 0;
+	outline: none;
+	width: 30px;
+	height: 30px;
+	padding: 0.5rem;
+	background-color: var(--white-100);
+	border-radius: 50%;
+}
+
+.wishlist-ico svg {
+	fill: var(--black-900);
+	transition: all 0.3s ease;
+}
+
+.wishlist-ico:hover > svg {
+	transform: scale(1.2);
+}
+
+.item-name {
+	padding: 0.3rem 0 0 0.5rem;
+	font-size: 0.8rem;
+	font-weight: 400;
+}
+
+.item-price {
+	padding: 0.5rem 0 0 0.5rem;
+	font-size: 0.9rem;
+	font-weight: 500;
+}
+
+@media screen and (max-width: 426px) {
+	.cards {
+		padding: 0 0 1rem;
+	}
+
+	.cards-img {
+		height: 166px;
+		max-width: 187px;
+	}
+
+	.cards .wishlist-ico {
+		top: 5px;
+	}
+}

@@ -1,0 +1,60 @@
+.product-shot{
+    flex : 0 0 50vw;
+    max-width: 500px;
+    height: 520px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    position: relative;
+    padding: 1rem;
+    background-color: var(--off-white);
+}
+
+.heart-button{
+    position: absolute;
+    top:20px;
+    right: 20px;
+    background: none;
+    outline: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    padding: .6rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.heart-button svg{
+    fill : var(--gray-800);
+    width: 13px;
+    height: 13px;
+}
+
+.heart-button .heart-red{
+    fill : red;
+}
+
+
+.product-shot img{
+    object-fit: contain;
+    height: 90%;
+}
+
+
+@media screen and (max-width : 1024px){
+    .product-shot{
+        flex : 0 0 40vw;
+        height: 400px;
+    }
+}
+
+@media screen and (max-width : 600px){
+    .product-shot{
+        max-width: 100%;
+        flex : 0 0 80vw;
+    }
+}

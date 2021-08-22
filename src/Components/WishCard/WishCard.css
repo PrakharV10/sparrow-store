@@ -1,0 +1,30 @@
+.cross-btn{
+    border: none;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    right: 5px;
+    padding: .1rem;
+    border-radius: 50%;
+    background-color: var(--white-100);
+    cursor: pointer;
+}
+
+.cross-btn svg{
+    width: 20px;
+    height: 20px;
+    transition: all .3s ease;
+}
+
+.cross-btn:hover > svg{
+    fill: red;
+}
+
+@media screen and (max-width : 426px){
+    .cross-btn{
+        top:10px
+    }
+}

@@ -1,0 +1,29 @@
+.product-desc{
+    height: max-content;
+    background-color: var(--white-100);
+    margin: 2rem auto;
+    width: 80%;
+}
+
+.product-desc .container{
+    display: flex;
+    background-color: var(--white-100);
+    height: max-content;
+}
+
+.desc-loader{
+    min-height: 80vh;
+}
+
+@media screen and (max-width : 1024px) {
+    .product-desc{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width : 600px){
+    .product-desc .container{
+        flex-direction: column;
+        height: 100%;
+    }
+}

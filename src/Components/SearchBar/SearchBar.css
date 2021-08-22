@@ -1,0 +1,92 @@
+.search-bar-bg{
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    position: fixed;
+    top : 0;
+    left: 0;
+    width: 100%;
+    z-index: 6;
+    transition: all .3s cubic-bezier(0.25, 0.46, 0.43, 0.96);
+}
+
+.search-bar-bg.hide{
+    visibility: hidden;
+    opacity: 0;
+}
+
+.search-bar-modal{
+    position: fixed;
+    height: 190px;
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    z-index: 7;
+    background-color: var(--white-100);
+    padding: 2rem 3rem;
+    transform: translate(0);
+    transition: transform .3s cubic-bezier(0.25, 0.46, 0.43, 0.96);
+}
+
+.search-bar-modal.hide{
+    transform: translate(0,-100%);
+}
+
+.search-bar-modal .heading{
+    font-size: .95rem;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.search-bar-modal .heading svg{
+    cursor: pointer;
+}
+
+.search-bar{
+    display: flex;
+    align-items: center;
+    background-color: var(--white-100);
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.219);
+    padding-bottom: .5rem;
+}
+
+.search-bar button{
+    padding-top: 2px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.search-bar input{
+    border : none;
+    flex-grow: 1;
+    outline: none;
+}
+
+.search-bar input::placeholder{
+    font-family: 'Poppins';
+    opacity: .9;
+}
+
+.search-bar button svg{
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    transition: all .2s ease-in-out ;
+    fill : var(--gray-900);
+}
+
+.search-bar svg:hover{
+    fill : var(--pink-800);
+}
+
+@media screen and (max-width : 768px){
+    .search-bar-modal{
+        padding: 1.2rem;
+        height: 150px;
+    }
+}

@@ -1,0 +1,86 @@
+.cart-card {
+	height: 200px;
+	width: 100%;
+	display: flex;
+	background-color: var(--white-100);
+	border-radius: 2px;
+	margin-bottom: 1rem;
+}
+
+.card-image {
+	padding: 1rem;
+	flex: 0 0 150px;
+	display: flex;
+	justify-content: center;
+	cursor: pointer;
+	max-width: 200px;
+}
+
+.card-image img {
+	height: auto;
+	width: 150px;
+}
+
+.card-details {
+	padding-top: 1rem;
+	padding-right: 0.5rem;
+	flex: 1 1 0;
+}
+
+.card-details .brand,
+.name,
+.quantity-group,
+.description,
+.price {
+	margin-bottom: 0.5rem;
+	padding-left: 0;
+}
+
+.card-details .brand {
+	padding-top: 0;
+	font-weight: 400;
+	font-size: 0.8rem;
+}
+
+.card-details .name {
+	font-weight: 500;
+	font-size: 0.8rem;
+}
+
+.card-details .description {
+	font-size: 0.7rem;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	line-height: 1rem;
+	min-height: 3rem;
+}
+
+.quantity-group {
+	display: flex;
+	width: 100px;
+	justify-content: space-between;
+	border: 1px solid var(--gray-900);
+	padding: 7px 10px;
+	font-weight: 500;
+	font-size: 1.1rem;
+}
+
+.quantity-group button {
+	border: 0;
+	margin-top: 4px;
+	background-color: transparent;
+	color: var(--gray-900);
+	cursor: pointer;
+	outline: none;
+}
+
+.quantity-group button svg {
+	stroke: var(--gray-900);
+}
+
+.card-details .price {
+	font-size: 1.2rem;
+	font-weight: 500;
+}

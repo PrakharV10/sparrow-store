@@ -1,0 +1,17 @@
+.breadcrumb {
+	margin: 0 -4rem;
+	padding: 1rem 4rem;
+	background-color: var(--off-white);
+	font-weight: 400;
+	font-size: 0.8rem;
+	text-align: left;
+	text-transform: capitalize;
+	letter-spacing: 1px;
+}
+
+@media screen and (max-width: 1024px) {
+	.breadcrumb {
+		margin: 0 -1rem;
+		padding: 1rem;
+	}
+}

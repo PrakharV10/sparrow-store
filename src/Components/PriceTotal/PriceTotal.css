@@ -1,0 +1,70 @@
+.price-total {
+	flex: 1 1 0;
+	border-radius: 2px;
+	margin-left: 1.5rem;
+	/* change above to 0  */
+	max-width: 270px;
+}
+
+.price-total > div {
+	background-color: var(--white-100);
+}
+
+.total-title {
+	font-size: 1rem;
+	font-weight: 600;
+	color: var(--gray-800);
+	padding: 1rem 1rem 0.5rem;
+	margin-bottom: 1rem;
+	border-bottom: 1px solid rgba(214, 213, 213, 0.562);
+}
+
+.price-breakdown {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 0.8rem;
+	font-weight: 400;
+	padding: 0.5rem 1rem;
+	color: var(--gray-800);
+}
+
+.c-green {
+	color: green;
+}
+
+.b-btm {
+	border-bottom: 1px dashed rgba(214, 213, 213, 0.562);
+}
+
+.total-amount {
+	font-size: 0.9rem;
+	padding: 1rem;
+	font-weight: 500;
+}
+
+.price-total .btn-black {
+	margin: 1rem;
+	width: 90%;
+}
+
+.payment-text {
+	text-align: center;
+	font-size: 0.9rem;
+	margin-left: 1rem;
+	font-weight: 400;
+	color: green;
+}
+
+@media screen and (max-width: 768px) {
+	.price-total {
+		max-width: 100%;
+		margin-left: 0;
+	}
+
+	.price-total .btn-black {
+		margin: 1rem;
+		width: max-content;
+	}
+}
